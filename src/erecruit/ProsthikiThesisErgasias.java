@@ -4,7 +4,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
 
-import java.sql.Date;
+import java.sql.*;
+
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
@@ -25,13 +26,50 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 	public Date ImerominiaEnarksis;
 	public Date ImerominiaAnakoinwshs;
 	public Date ImerominiaLiksis;
-	public String Lista[] = {"Mhtsos", "Mpamphs", "takis" , "Lakis"};
+	private int CounterAntikeimenwn = 1;
+	private int EisagwgiGiaCombo = 1;
 	
 	
 	public String SQLgetArithmosThesisErgasias() {		//TODO get arithmos thesis ergasias apo sql SHMANTIKO: ARITHMOS THESIS +1 k METATROPH TINYINT SE STRING
-		String arithmosthesis = "0";
-
+		String arithmosthesis= "0";
+		try {
+			ResultSet ArithmosThesisErgasiasRS = Main.Connection().executeQuery("SELECT `id` from JOB ORDER BY `id` DESC");
+			ArithmosThesisErgasiasRS.next();
+			arithmosthesis = ArithmosThesisErgasiasRS.getString(1);
+			arithmosthesis = String.valueOf(Integer.parseInt(arithmosthesis)+1);
+			return arithmosthesis;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return arithmosthesis;
+
+
+	}
+	
+	
+	protected String[] EisagwgiAntikeimApoVasi() 
+	{
+		String[] error = {"Error"};
+		try {
+			ResultSet AntikeimenaRS = Main.Connection().executeQuery("SELECT `TITLE` FROM ANTIKEIM");
+			AntikeimenaRS.last();
+			CounterAntikeimenwn = AntikeimenaRS.getRow();
+			String[] antikeimena = new String[CounterAntikeimenwn];
+			AntikeimenaRS.beforeFirst();
+			AntikeimenaRS.next();
+			for (int i=0; i<CounterAntikeimenwn; i++) {
+			antikeimena[i] = AntikeimenaRS.getString(1);
+			AntikeimenaRS.next();
+			System.out.println(antikeimena[i]);
+			
+			}
+			return antikeimena;
+
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return error;
 	}
 	public void ApothikefsiStoixeiwnNeasThesis() { 		//TODO APOTHIKEFSI ola ta strings sth vash
 		String TitlosNeasThesis = titlosThesisText.getText();
@@ -137,9 +175,12 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 		KwdikosText.setEditable(false);
 		KwdikosText.setBounds(187, 17, 186, 21);
 		
-		Combo AntikeimenaList = new Combo(shell, SWT.NONE);
+		Combo AntikeimenaList = new Combo(shell, SWT.READ_ONLY);
 		AntikeimenaList.setBounds(187, 105, 186, 23);
-		AntikeimenaList.add("Test"); 
+		AntikeimenaList.setItems(EisagwgiAntikeimApoVasi());
+		AntikeimenaList.select(0);
+
+
 		
 
 		

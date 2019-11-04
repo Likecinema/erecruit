@@ -42,7 +42,7 @@ public class CandidateWindow {
 	 */
 	protected void createContents() {
 		shell = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
-		shell.setSize(312, 154);
+		shell.setSize(287, 133);
 		shell.setText("\u03A0\u03B1\u03C1\u03AC\u03B8\u03C5\u03C1\u03BF \u03A5\u03C0\u03BF\u03C8\u03B7\u03C6\u03AF\u03BF\u03C5");
 		
 		Button btnTest = new Button(shell, SWT.NONE);
