@@ -48,11 +48,11 @@ public class LoginWindow extends Main {
 		LoginShell.setSize(388, 124);
 		LoginShell.setText("\u03A0\u03B1\u03C1\u03AC\u03B8\u03C5\u03C1\u03BF \u0395\u03B9\u03C3\u03B1\u03B3\u03C9\u03B3\u03AE\u03C2 \u03A3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03C9\u03BD");
 		
-		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-																/*++++++++++++++++++++++++++++*/
-																/*Dhmiourgia label kai textbox*/
-																/*++++++++++++++++++++++++++++*/
-		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+								/*++++++++++++++++++++++++++++*/
+								/*Dhmiourgia label kai textbox*/
+								/*++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		
 		usernameField = new Text(LoginShell, SWT.BORDER);
 		usernameField.setBounds(10, 31, 123, 21);
@@ -68,11 +68,11 @@ public class LoginWindow extends Main {
 		passwordLabel.setBounds(139, 10, 133, 15);
 		passwordLabel.setText("\u039A\u03C9\u03B4\u03B9\u03BA\u03CC\u03C2 \u03A0\u03C1\u03CC\u03C3\u03B2\u03B1\u03C3\u03B7\u03C2");
 	
-		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-																	/*++++++++++++++++++++++++++++++++++*/
-																	/*Koumpia kai diaxeirisi leitourgiwn*/
-																	/*++++++++++++++++++++++++++++++++++*/
-		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+									/*++++++++++++++++++++++++++++++++++*/
+									/*Koumpia kai diaxeirisi leitourgiwn*/
+									/*++++++++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		
 		Button loginButton = new Button(LoginShell, SWT.NONE);
 		loginButton.setToolTipText("");
@@ -120,20 +120,20 @@ public class LoginWindow extends Main {
 
 	}
 	
-		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-																/*++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-																/*Methodos Elegxou tou pinaka user ths vashs
-																 * gia ta stoixeia eisodou
-																 * Pws Leitourgei: Arxikopoiei integer me onoma
-																 * epistfori, kai elegxei me try/catch mexri na vrei
-																 * pinaka pou na exei username kai password idio
-																 * me afto pou vrisketai sta textbox. An apotuxei
-																 * epistrefei timh = 4. To programma einai ftiagmeno
-																 * me epistrofh = 4 na emfanizei minima lathous
-																 * an username = password = admin tote epistrofh = 1
-																 * kai anoigei to AdminWindow                         */
-																/*++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+				/*++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+				/*Methodos Elegxou tou pinaka user ths vashs
+				 * gia ta stoixeia eisodou
+			    * Pws Leitourgei: Arxikopoiei integer me onoma
+				 * epistfori, kai elegxei me try/catch mexri na vrei* 		
+				 * pinaka pou na exei username kai password idio
+				 * me afto pou vrisketai sta textbox. An apotuxei
+				 * epistrefei timh = 4. To programma einai ftiagmeno
+				 * me epistrofh = 4 na emfanizei minima lathous
+				 * an username = password = admin tote epistrofh = 1
+				 * kai anoigei to AdminWindow                         */
+				/*++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	protected int SQLCheck() {	
 		 username = usernameField.getText(); 
 		 password = passwordField.getText();
@@ -176,7 +176,7 @@ public class LoginWindow extends Main {
 					}
 
 		return epistrofh;
-		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	
 }
 }
