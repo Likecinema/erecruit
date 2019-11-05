@@ -4,15 +4,17 @@ package erecruit;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
+
+import java.sql.*;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 
 public class AllagiStoixeiwnEtaireias {
+
 
 	protected Shell shell;
 	private Text numText;
@@ -38,6 +40,7 @@ public class AllagiStoixeiwnEtaireias {
 
 
 	public void open() {
+		
 		Display display = Display.getDefault();
 		createContents();
 		shell.open();
@@ -49,10 +52,20 @@ public class AllagiStoixeiwnEtaireias {
 		}
 	}
 
+	/**
+	 * @wbp.parser.entryPoint
+	 */
 	protected void createContents() {
+
 		shell = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shell.setSize(366, 300);
 		shell.setText("\u03A0\u03C1\u03BF\u03B2\u03BF\u03BB\u03AE \u03BA\u03B1\u03B9 \u03B1\u03BB\u03BB\u03B1\u03B3\u03AE \u03C3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03C9\u03BD \u03B5\u03C4\u03B1\u03B9\u03C1\u03B5\u03AF\u03B1\u03C2");
+		
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+																	/*++++++++++++++++++++++++++++*/
+																	/*Dhmiourgia Label kai TextBox*/
+																	/*++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		
 		Label AFM = new Label(shell, SWT.NONE);
 		AFM.setBounds(10, 13, 77, 15);
@@ -87,22 +100,27 @@ public class AllagiStoixeiwnEtaireias {
 		country.setBounds(10, 200, 77, 15);
 		
 		numText = new Text(shell, SWT.BORDER);
+		numText.setEnabled(false);
 		numText.setEditable(false);
 		numText.setBounds(172, 143, 168, 21);
 		
 		cityText = new Text(shell, SWT.BORDER);
+		cityText.setEnabled(false);
 		cityText.setEditable(false);
 		cityText.setBounds(172, 170, 168, 21);
 		
 		countryText = new Text(shell, SWT.BORDER);
+		countryText.setEnabled(false);
 		countryText.setEditable(false);
 		countryText.setBounds(172, 197, 168, 21);
 		
 		streetText = new Text(shell, SWT.BORDER);
+		streetText.setEnabled(false);
 		streetText.setEditable(false);
 		streetText.setBounds(172, 119, 168, 21);
 		
 		telText = new Text(shell, SWT.BORDER);
+		telText.setEnabled(false);
 		telText.setEditable(false);
 		telText.setBounds(172, 91, 168, 21);
 		
@@ -121,21 +139,52 @@ public class AllagiStoixeiwnEtaireias {
 		AFMText.setEditable(false);
 		AFMText.setBounds(172, 10, 168, 21);
 		
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+																	/*++++++++++++++++++++++++++*/
+																	/*Eisagwgi stoixeiwn apo SQL*/
+																	/*++++++++++++++++++++++++++*/
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		
+		String Query = ("SELECT AFM, DOY, name, tel, street, num, city, country from etaireia INNER JOIN recruiter ON recruiter.firm=etaireia.AFM where recruiter.username = '" + LoginWindow.username + "'");
+		try {
+		ResultSet StoixeiaEtaireiasRS =  Main.Connection().executeQuery(Query);
+		StoixeiaEtaireiasRS.first();
+		AFMText.setText(StoixeiaEtaireiasRS.getString(1));
+		DOYText.setText(StoixeiaEtaireiasRS.getString(2));
+		nameText.setText(StoixeiaEtaireiasRS.getString(3));
+		telText.setText(StoixeiaEtaireiasRS.getString(4));
+		streetText.setText(StoixeiaEtaireiasRS.getString(5));
+		numText.setText(StoixeiaEtaireiasRS.getString(6));
+		cityText.setText(StoixeiaEtaireiasRS.getString(7));
+		countryText.setText(StoixeiaEtaireiasRS.getString(8));
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+																	/*++++++++++++++++++++++++++++++++++*/
+																	/*Koumpia kai diaxeirisi leitourgiwn*/
+																	/*++++++++++++++++++++++++++++++++++*/
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		
 		AllagiStoixeiwnButton = new Button(shell, SWT.NONE);
 		AllagiStoixeiwnButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
 				telText.setEditable(true);
+				telText.setEnabled(true);
 				streetText.setEditable(true);
+				streetText.setEnabled(true);
 				numText.setEditable(true);
+				numText.setEnabled(true);
 				countryText.setEditable(true);
+				countryText.setEnabled(true);
 				cityText.setEditable(true);
+				cityText.setEnabled(true);
 				
-			}
-		});
-		AllagiStoixeiwnButton.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
 			}
 		});
 		AllagiStoixeiwnButton.setBounds(10, 224, 114, 28);
@@ -155,6 +204,8 @@ public class AllagiStoixeiwnEtaireias {
 		});
 		EfarmogiAllagwnButton.setText("\u0395\u03C6\u03B1\u03C1\u03BC\u03BF\u03B3\u03AE \u0391\u03BB\u03BB\u03B1\u03B3\u03CE\u03BD");
 		EfarmogiAllagwnButton.setBounds(130, 224, 144, 28);
+		
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 	}
 

@@ -1,9 +1,12 @@
 package erecruit;
 import java.sql.*;
 
-import org.eclipse.swt.SWT;
-
 public class Main {
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+											/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+											/*Main Class. Den uparxei parathiro, mono arxikopoieitai to programma
+											 *Oi methodoi edw xrisimopoiountai gia recruiter alla kai candidate		*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		public static void main(String[] args) {
 		LoginWindow ArxikoParathiro = new LoginWindow();
 		ArxikoParathiro.createContents();
@@ -13,8 +16,15 @@ public class Main {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		}
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+										/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+										/* 3 methodoi gia elegxo kai allagh tou kwdikou sto parathiro AllagiKwdikou */
+										/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		
 		public boolean ElegxosPaliouKwdikou(String password) {
 			if (password.equals(erecruit.LoginWindow.password)) {
 				return true;
@@ -33,6 +43,12 @@ public class Main {
 		public void UpdatePassword() {
 			//TODO update ton kwdiko sthn SQL
 		}
+		
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+										/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+										/*Methodos dhmiourgias Statement gia efkolh epistrofh ResultSet opou xreiazetai*/
+										/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		public static Statement Connection() throws SQLException  {
 
 				//Sindesi ston Server

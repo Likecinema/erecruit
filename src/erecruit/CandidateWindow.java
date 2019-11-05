@@ -45,17 +45,17 @@ public class CandidateWindow {
 		shell.setSize(287, 133);
 		shell.setText("\u03A0\u03B1\u03C1\u03AC\u03B8\u03C5\u03C1\u03BF \u03A5\u03C0\u03BF\u03C8\u03B7\u03C6\u03AF\u03BF\u03C5");
 		
-		Button btnTest = new Button(shell, SWT.NONE);
-		btnTest.setBounds(10, 10, 259, 25);
-		btnTest.setText("Προβολή/αλλαγή στοιχείων προφίλ");
+		Button ProvoliProfilBtn = new Button(shell, SWT.NONE);
+		ProvoliProfilBtn.setBounds(10, 10, 259, 25);
+		ProvoliProfilBtn.setText("Προβολή/αλλαγή στοιχείων προφίλ");
 		
-		Button btnNewButton = new Button(shell, SWT.NONE);
-		btnNewButton.setBounds(10, 41, 259, 25);
-		btnNewButton.setText("Προβολή αιτήσεων και αίτηση σε νέες θέσεις");
+		Button ProvoliAithsewnKaiAkurwshBtn = new Button(shell, SWT.NONE);
+		ProvoliAithsewnKaiAkurwshBtn.setBounds(10, 41, 259, 25);
+		ProvoliAithsewnKaiAkurwshBtn.setText("\u03A0\u03C1\u03BF\u03B2\u03BF\u03BB\u03AE \u03B1\u03B9\u03C4\u03AE\u03C3\u03B5\u03C9\u03BD \u03BA\u03B1\u03B9 \u0391\u03BA\u03CD\u03C1\u03C9\u03C3\u03B7 \u03B1\u03AF\u03C4\u03B7\u03C3\u03B7\u03C2");
 		
-		Button btnNewButton_1 = new Button(shell, SWT.NONE);
-		btnNewButton_1.setBounds(10, 72, 259, 25);
-		btnNewButton_1.setText("Ακύρωση υποψηφιότητας");
+		Button AitisiSeTheshBtn = new Button(shell, SWT.NONE);
+		AitisiSeTheshBtn.setBounds(10, 72, 259, 25);
+		AitisiSeTheshBtn.setText("\u0391\u03AF\u03C4\u03B7\u03C3\u03B7 \u03C3\u03B5 \u03B8\u03AD\u03C3\u03B7");
 
 	}
 }

@@ -27,10 +27,14 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 	public Date ImerominiaAnakoinwshs;
 	public Date ImerominiaLiksis;
 	private int CounterAntikeimenwn = 1;
-	private int EisagwgiGiaCombo = 1;
+
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+								/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+								/*Methodos evresis id thesis ergasias, me skopo na fainetai to epomeno id sto analogo TextBox*/
+								/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	
-	
-	public String SQLgetArithmosThesisErgasias() {		//TODO get arithmos thesis ergasias apo sql SHMANTIKO: ARITHMOS THESIS +1 k METATROPH TINYINT SE STRING
+	public String SQLgetArithmosThesisErgasias() {	
 		String arithmosthesis= "0";
 		try {
 			ResultSet ArithmosThesisErgasiasRS = Main.Connection().executeQuery("SELECT `id` from JOB ORDER BY `id` DESC");
@@ -46,6 +50,13 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 
 	}
 	
+	/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	
+	/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+					/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+					/*Methodos evresis twn antikeimenwn apo th vasi. Apothikevontai se String[] kai Eisagontai sto Combo mesw ths setItems()*/
+					/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	
 	protected String[] EisagwgiAntikeimApoVasi() 
 	{
@@ -71,6 +82,13 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 		}
 		return error;
 	}
+	/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	
+	/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+											/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+											/*Prosorini apothikefsi metavlhtwn prin ginei apothikefsi sth vash*/
+											/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	public void ApothikefsiStoixeiwnNeasThesis() { 		//TODO APOTHIKEFSI ola ta strings sth vash
 		String TitlosNeasThesis = titlosThesisText.getText();
 		String MisthosNeasThesis = misthosText.getText();
@@ -81,9 +99,15 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 		String PerigrafiThesis = perigrafiText.getText();
 
 	}
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+													/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+													/*Metatroph hmerominias se morfh katalhlh gia update sthn SQL*/
+													/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	
 	public Date MetatropiSeSQLDate(DateTime TempDateTime) {
-		//Metatropi ths selected hmerominias se SQL DATE//
 		int mera;
 		int mhnas;
 		int etos;
@@ -95,9 +119,19 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 		return SQLdate;	
 	}
 	
+	/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	
+	/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+												/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+												/*Epistrofh tou antikeimenou apo to Combo gia apothikefsi sth vash*/
+												/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	
 	public void getAntikeim(Combo AntikeimList){
 		Antikeim = AntikeimList.getItem(AntikeimList.getSelectionIndex());
 		}
+	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	
 	public void open() {
 		Display display = Display.getDefault();
@@ -119,6 +153,12 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 		shell = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shell.setSize(397, 378);
 		shell.setText("Προσθήκη θέσης εργασίας");
+		
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+															/*+++++++++++++++++++++++++++++++++++*/
+															/*Dhmiourgia Label, TextBox kai Combo*/
+															/*+++++++++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		
 		Label kwdikosThesisLabel = new Label(shell, SWT.NONE);
 		kwdikosThesisLabel.setBounds(10, 20, 171, 15);
@@ -171,18 +211,22 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 		titlosThesisText.setBounds(187, 44, 186, 21);
 		
 		KwdikosText = new Text(shell, SWT.BORDER);
-		KwdikosText.setText(SQLgetArithmosThesisErgasias()); 
+		KwdikosText.setText(SQLgetArithmosThesisErgasias()); //Eisagwgh ID thesis ergasias
 		KwdikosText.setEditable(false);
 		KwdikosText.setBounds(187, 17, 186, 21);
 		
 		Combo AntikeimenaList = new Combo(shell, SWT.READ_ONLY);
 		AntikeimenaList.setBounds(187, 105, 186, 23);
-		AntikeimenaList.setItems(EisagwgiAntikeimApoVasi());
+		AntikeimenaList.setItems(EisagwgiAntikeimApoVasi()); //Eisagwgh Antikeimenwn sto combo
 		AntikeimenaList.select(0);
 
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
-		
-
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+													/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+													/*Dhmiourgia koumpiwn kai diaxeirisi twn leitourgiwn tous*/
+													/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		
 		Button EfarmogiButton = new Button(shell, SWT.NONE);
 		EfarmogiButton.addMouseListener(new MouseAdapter() {
@@ -204,6 +248,8 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 		Button KatharismosButton = new Button(shell, SWT.NONE); 
 		KatharismosButton.setBounds(186, 305, 186, 25);
 		KatharismosButton.setText("\u039A\u03B1\u03B8\u03B1\u03C1\u03B9\u03C3\u03BC\u03CC\u03C2");
+		
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 	}
 }

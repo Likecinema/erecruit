@@ -107,7 +107,6 @@ public class AllagiStoixeiwnLogariasmouRecruiter extends LoginWindow {
 		try {
 			epwnumoTextBox.setText(AnagnwshStoixeiwnRS.getString(2));
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -118,7 +117,6 @@ public class AllagiStoixeiwnLogariasmouRecruiter extends LoginWindow {
 		try {
 			HmerominiaEggrafhsTextBox.setText(AnagnwshStoixeiwnRS.getString(3));
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -129,7 +127,6 @@ public class AllagiStoixeiwnLogariasmouRecruiter extends LoginWindow {
 		try {
 			emailTextBox.setText(AnagnwshStoixeiwnRS.getString(4));
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -140,7 +137,6 @@ public class AllagiStoixeiwnLogariasmouRecruiter extends LoginWindow {
 		try {
 			etaireiaTextBox.setText(AnagnwshStoixeiwnRS.getString(6));
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
@@ -151,7 +147,6 @@ public class AllagiStoixeiwnLogariasmouRecruiter extends LoginWindow {
 		try {
 			ethProupiresiasTextBox.setText(AnagnwshStoixeiwnRS.getString(5));
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		

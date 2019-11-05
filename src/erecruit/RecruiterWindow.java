@@ -1,19 +1,20 @@
+//TODO! doulevoun ola ta set, xreiazomai ola ta get
 package erecruit;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 
 public class RecruiterWindow extends LoginWindow {
+	
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+														/*+++++++++++++++++++++++++++++++++++++*/
+														/*Parathiro tou interface tou recruiter*/
+														/*+++++++++++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 	protected Shell shell;
 
@@ -37,6 +38,11 @@ public class RecruiterWindow extends LoginWindow {
 		shell = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shell.setSize(369, 212);
 		shell.setText("Παράθυρο υπεύθυνου προσλήψεων");
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+											/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+											/*Anoigma neou parathirou analoga me th leitourgia pou dialegei o xristis*/
+											/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		
 		Button ButtonAllagiStoixeiwnEtaireias = new Button(shell, SWT.NONE);
 		ButtonAllagiStoixeiwnEtaireias.addMouseListener(new MouseAdapter() {
@@ -100,5 +106,6 @@ public class RecruiterWindow extends LoginWindow {
 		ButtonProvoliThesewnEtairias.setText("Προβολή θέσεων εργασίας της Εταιρείας");
 
 	}
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 }

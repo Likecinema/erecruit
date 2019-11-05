@@ -12,33 +12,35 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.widgets.Table;
-import org.eclipse.jface.viewers.TableViewer;
-import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.swt.widgets.TableColumn;
-import org.eclipse.swt.custom.TableCursor;
-import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+
 import java.sql.*;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 
 public class ProvoliKaiEpeksergasiaAitisewn {
 
 	protected Shell shlProvoliKaiEpeksergasiaAitisewn;
-	private Text text;
-	private Text text_1;
-	private Text text_2;
-	private Text text_3;
-	private Text text_4;
-	private Text text_5;
-	private Text text_6;
-	private final FormToolkit formToolkit = new FormToolkit(Display.getDefault());
+	private Text IDText;
+	private Text SalaryText;
+	private Text EdraText;
+	private Text PositionText;
+	private Text StartDateText;
+	private Text AnnounceDateText;
+	private Text SubmDateText;
+	@SuppressWarnings("unused")
 	private int sthlespinaka;
 	private int seirespinaka;
+	
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+													/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+													/*Methodos gia epistrofi tou id me vash to pinaka sthn epomenh methodo*/
+													/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	
 	protected String EisagwgiThesewnRecruiter(int i){
 		String IDGiaCombo = null;
@@ -46,8 +48,16 @@ public class ProvoliKaiEpeksergasiaAitisewn {
 			IDGiaCombo = ArrayGiaCombo[i][0];
 			System.out.println(IDGiaCombo);
 			return IDGiaCombo;
+			
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		
-		
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+														/*++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+														/*Methodos gia anagnwsh twn thesewn ergasias apo th vash
+														 * kai epistrofh pinaka 2 diastasewn me ta stoixeia stis 
+														 * theseis "TheseisApoSQL"*/
+														/*++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	}
 	private String[][] PinakasThesewnRecruiter(){
 		String TheseisApoSQL = ("select `id`, `salary`,`edra`, `position`,`start_date`,`announce_date`,`submission_date` from job inner join recruiter on job.recruiter = recruiter.username inner join etaireia on recruiter.firm = etaireia.AFM where etaireia.AFM in ( select recruiter.firm from recruiter where recruiter.username = '" + LoginWindow.username + "')");
@@ -62,13 +72,9 @@ public class ProvoliKaiEpeksergasiaAitisewn {
 			seirespinaka = SeiresThesewn;
 			TheseisRecruiterRS.first();
 			String[][] PinakasThesewn = new String[SeiresThesewn][SthlesThesewn];
-			//System.out.println("sthles=" + SthlesThesewn);
-			//System.out.println("seires=" + SeiresThesewn);
 			for (int i = 0; i< SeiresThesewn; i++) {
-				//System.out.println("H Timh tou i einai " + i);
 				for (int k = 0; k<SthlesThesewn;k++)
 				{
-					//System.out.println("H timh tou k einai " +k);
 					PinakasThesewn[i][k] = TheseisRecruiterRS.getString(k+1);
 					System.out.println(PinakasThesewn[i][k]);
 				}
@@ -78,11 +84,11 @@ public class ProvoliKaiEpeksergasiaAitisewn {
 			return PinakasThesewn;
 				
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return error;
 	}
+	/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 	public void open() {
 		Display display = Display.getDefault();
@@ -106,14 +112,51 @@ public class ProvoliKaiEpeksergasiaAitisewn {
 		shlProvoliKaiEpeksergasiaAitisewn.setText("Προβολή και επεξεργασία αιτήσεων");
 		
 		Combo EpilogiAitisisCombo = new Combo(shlProvoliKaiEpeksergasiaAitisewn, SWT.READ_ONLY);
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+											/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+											/*SelectionAdapter gia epilogi ergasias kai gemisma twn antistoixwn textbox*/
+											/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		EpilogiAitisisCombo.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				int ArithmosErgasias = EpilogiAitisisCombo.getSelectionIndex();
+				String[][] PinakasErgasiwn = PinakasThesewnRecruiter();
+				System.out.println(PinakasErgasiwn[1][2]);
+				IDText.setText(PinakasErgasiwn[ArithmosErgasias][0]);
+				SalaryText.setText(PinakasErgasiwn[ArithmosErgasias][1]);
+				EdraText.setText(PinakasErgasiwn[ArithmosErgasias][2]);
+				PositionText.setText(PinakasErgasiwn[ArithmosErgasias][3]);
+				StartDateText.setText(PinakasErgasiwn[ArithmosErgasias][4]);
+				AnnounceDateText.setText(PinakasErgasiwn[ArithmosErgasias][5]);
+				SubmDateText.setText(PinakasErgasiwn[ArithmosErgasias][6]);
+				
+			}
+		});
+		
+
+		
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+
+		
+		
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+													/* Gemisma tou combo me ta id apo tis ergasies */		
 		EpilogiAitisisCombo.setBounds(10, 31, 463, 23);
 		EpilogiAitisisCombo.select(0);
-		System.out.println("eimai edw");
 		PinakasThesewnRecruiter();
 		for (int i = 0; i<seirespinaka; i++) {
 		EpilogiAitisisCombo.add(EisagwgiThesewnRecruiter(i));
-		System.out.println(EisagwgiThesewnRecruiter(i));
 		}
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+															    /*++++++++++++++++++++++++++++*/
+																/*Dhmiourgia Label kai textbox*/
+															    /*++++++++++++++++++++++++++++*/
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		
 		
 		Label EksigisiEpilogisLabel = new Label(shlProvoliKaiEpeksergasiaAitisewn, SWT.NONE);
 		EksigisiEpilogisLabel.setBounds(10, 10, 179, 15);
@@ -147,42 +190,67 @@ public class ProvoliKaiEpeksergasiaAitisewn {
 		EdraLabel.setText("\u0388\u03B4\u03C1\u03B1");
 		EdraLabel.setBounds(10, 117, 223, 15);
 		
-		text = new Text(shlProvoliKaiEpeksergasiaAitisewn, SWT.BORDER);
-		text.setEditable(false);
-		text.setBounds(239, 60, 231, 21);
+		IDText = new Text(shlProvoliKaiEpeksergasiaAitisewn, SWT.BORDER);
+		IDText.setEditable(false);
+		IDText.setBounds(239, 60, 231, 21);
 		
-		text_1 = new Text(shlProvoliKaiEpeksergasiaAitisewn, SWT.BORDER);
-		text_1.setBounds(239, 87, 231, 21);
+		SalaryText = new Text(shlProvoliKaiEpeksergasiaAitisewn, SWT.BORDER);
+		SalaryText.setEditable(false);
+		SalaryText.setBounds(239, 87, 231, 21);
 		
-		text_2 = new Text(shlProvoliKaiEpeksergasiaAitisewn, SWT.BORDER);
-		text_2.setBounds(239, 114, 231, 21);
+		EdraText = new Text(shlProvoliKaiEpeksergasiaAitisewn, SWT.BORDER);
+		EdraText.setEditable(false);
+		EdraText.setBounds(239, 114, 231, 21);
 		
-		text_3 = new Text(shlProvoliKaiEpeksergasiaAitisewn, SWT.BORDER);
-		text_3.setBounds(239, 141, 231, 21);
+		PositionText = new Text(shlProvoliKaiEpeksergasiaAitisewn, SWT.BORDER);
+		PositionText.setEditable(false);
+		PositionText.setBounds(239, 141, 231, 21);
 		
-		text_4 = new Text(shlProvoliKaiEpeksergasiaAitisewn, SWT.BORDER);
-		text_4.setBounds(239, 168, 231, 21);
+		StartDateText = new Text(shlProvoliKaiEpeksergasiaAitisewn, SWT.BORDER);
+		StartDateText.setEditable(false);
+		StartDateText.setBounds(239, 168, 231, 21);
 		
-		text_5 = new Text(shlProvoliKaiEpeksergasiaAitisewn, SWT.BORDER);
-		text_5.setEditable(false);
-		text_5.setBounds(239, 195, 231, 21);
+		AnnounceDateText = new Text(shlProvoliKaiEpeksergasiaAitisewn, SWT.BORDER);
+		AnnounceDateText.setEditable(false);
+		AnnounceDateText.setBounds(239, 195, 231, 21);
 		
-		text_6 = new Text(shlProvoliKaiEpeksergasiaAitisewn, SWT.BORDER);
-		text_6.setBounds(239, 223, 231, 21);
+		SubmDateText = new Text(shlProvoliKaiEpeksergasiaAitisewn, SWT.BORDER);
+		SubmDateText.setEditable(false);
+		SubmDateText.setBounds(239, 223, 231, 21);
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+															/*++++++++++++++++++++++++++++++++++*/
+															/*Koumpia kai Diaxeirisi leitourgiwn*/
+															/*++++++++++++++++++++++++++++++++++*/
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		
 		Button EditJobButton = new Button(shlProvoliKaiEpeksergasiaAitisewn, SWT.NONE);
+		EditJobButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				SalaryText.setEditable(true);
+				EdraText.setEditable(true);
+				PositionText.setEditable(true);
+				StartDateText.setEditable(true);
+				SubmDateText.setEditable(true);
+			}
+		});
 		EditJobButton.setBounds(10, 247, 125, 25);
 		EditJobButton.setText("\u0395\u03C0\u03B5\u03BE\u03B5\u03C1\u03B3\u03B1\u03C3\u03AF\u03B1 \u0391\u03AF\u03C4\u03B7\u03C3\u03B7\u03C2");
 		
-		Button SaveAndQuitButton = new Button(shlProvoliKaiEpeksergasiaAitisewn, SWT.NONE);
+		Button SaveAndQuitButton = new Button(shlProvoliKaiEpeksergasiaAitisewn, SWT.NONE); //TODO APOTHIKEFSI & UPDATE STH VASH
 		SaveAndQuitButton.setText("\u0391\u03C0\u03BF\u03B8\u03AE\u03BA\u03B5\u03C5\u03C3\u03B7 \u03BA\u03B1\u03B9 \u0388\u03BE\u03BF\u03B4\u03BF\u03C2");
 		SaveAndQuitButton.setBounds(326, 247, 147, 25);
 		
-		Button button = new Button(shlProvoliKaiEpeksergasiaAitisewn, SWT.NONE);
-		button.setText("\u03A5\u03C0\u03BF\u03C8\u03AE\u03C6\u03B9\u03BF\u03B9 \u03BA\u03B1\u03B9 \u0392\u03B1\u03B8\u03BC\u03BF\u03BB\u03BF\u03B3\u03AF\u03B5\u03C2");
-		button.setBounds(141, 247, 179, 25);
-		formToolkit.adapt(button, true, true);
+		Button YpopsifioiKaiVathmologiesButton = new Button(shlProvoliKaiEpeksergasiaAitisewn, SWT.NONE); //TODO DOULEIA SQL & NEO PARATHIRO
+		YpopsifioiKaiVathmologiesButton.setText("\u03A5\u03C0\u03BF\u03C8\u03AE\u03C6\u03B9\u03BF\u03B9 \u03BA\u03B1\u03B9 \u0392\u03B1\u03B8\u03BC\u03BF\u03BB\u03BF\u03B3\u03AF\u03B5\u03C2");
+		YpopsifioiKaiVathmologiesButton.setBounds(141, 247, 179, 25);
+		
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		
 
+	}
 }
-}
+
+	

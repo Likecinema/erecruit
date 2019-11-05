@@ -48,6 +48,12 @@ public class LoginWindow extends Main {
 		LoginShell.setSize(388, 124);
 		LoginShell.setText("\u03A0\u03B1\u03C1\u03AC\u03B8\u03C5\u03C1\u03BF \u0395\u03B9\u03C3\u03B1\u03B3\u03C9\u03B3\u03AE\u03C2 \u03A3\u03C4\u03BF\u03B9\u03C7\u03B5\u03AF\u03C9\u03BD");
 		
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+																/*++++++++++++++++++++++++++++*/
+																/*Dhmiourgia label kai textbox*/
+																/*++++++++++++++++++++++++++++*/
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		
 		usernameField = new Text(LoginShell, SWT.BORDER);
 		usernameField.setBounds(10, 31, 123, 21);
 		
@@ -61,6 +67,12 @@ public class LoginWindow extends Main {
 		Label passwordLabel = new Label(LoginShell, SWT.NONE);
 		passwordLabel.setBounds(139, 10, 133, 15);
 		passwordLabel.setText("\u039A\u03C9\u03B4\u03B9\u03BA\u03CC\u03C2 \u03A0\u03C1\u03CC\u03C3\u03B2\u03B1\u03C3\u03B7\u03C2");
+	
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+																	/*++++++++++++++++++++++++++++++++++*/
+																	/*Koumpia kai diaxeirisi leitourgiwn*/
+																	/*++++++++++++++++++++++++++++++++++*/
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		
 		Button loginButton = new Button(LoginShell, SWT.NONE);
 		loginButton.setToolTipText("");
@@ -107,7 +119,22 @@ public class LoginWindow extends Main {
 		AuthenticateLabel.setBounds(10, 60, 252, 15);
 
 	}
-	protected int SQLCheck() {			/*methodos Elegxou tou pinaka user ths vashs gia ta stoixeia eisodou */	
+	
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+																/*++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+																/*Methodos Elegxou tou pinaka user ths vashs
+																 * gia ta stoixeia eisodou
+																 * Pws Leitourgei: Arxikopoiei integer me onoma
+																 * epistfori, kai elegxei me try/catch mexri na vrei
+																 * pinaka pou na exei username kai password idio
+																 * me afto pou vrisketai sta textbox. An apotuxei
+																 * epistrefei timh = 4. To programma einai ftiagmeno
+																 * me epistrofh = 4 na emfanizei minima lathous
+																 * an username = password = admin tote epistrofh = 1
+																 * kai anoigei to AdminWindow                         */
+																/*++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+	protected int SQLCheck() {	
 		 username = usernameField.getText(); 
 		 password = passwordField.getText();
 		 LoggedInUser = usernameField.getText();
@@ -120,43 +147,36 @@ public class LoginWindow extends Main {
 				//elegxos gia recruiter, an vrei ta stoixeia thetei epistrofh = 1
 				Recruiter = Connection().executeQuery("SELECT * FROM erecruit.recruiter WHERE username='"+username+"';");
 							Recruiter.next();
-							SQLusername = Recruiter.getString("username");
-							//System.out.println(SQLusername);		
+							SQLusername = Recruiter.getString("username");	
 							Recruiter = Connection().executeQuery("SELECT password From erecruit.user WHERE password='"+password+"';");
 							Recruiter.next();
 							SQLpassword = Recruiter.getString("password");
 							epistrofh = 2;
-							//System.out.println(SQLpassword);
 							
 							
 							
 
 				 
 			} catch (SQLException e) {
+				System.out.println("O xristis " + username + "den einai ipefthinos proslipsewn");
+			}
 				
 			try {
 				//elegxos gia candidate, an vrei ta stoixeia thetei epistrofh = 2
 				Candidate = Connection().executeQuery("SELECT username FROM erecruit.candidate WHERE username='"+username+"';");
 				Candidate.next();
-				SQLusername = Candidate.getString("username");
-				//System.out.println(SQLusername);		
+				SQLusername = Candidate.getString(username);	
 				Candidate = Connection().executeQuery("SELECT password From erecruit.user WHERE password='"+password+"';");
 				Candidate.next();
 				SQLpassword = Candidate.getString("password");
 				epistrofh = 3;
-				//System.out.println(SQLpassword);
-				//System.out.print(epistrofh);
-			}
-			catch (SQLException e1) {}
 				}
+					catch (SQLException e1) {
+						System.out.println("O Xristis " + username + " den einai upopsifios");
+					}
 
-				
-
-			
-			 
-		
-	//TODO, psaxnei sundiasmo onomatos/kwdikou, epistrefei times "1" gia admin, "2" gia recruiter, "3" gia candidate, "4" gia not found
 		return epistrofh;
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	
 }
 }

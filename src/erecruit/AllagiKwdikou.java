@@ -9,6 +9,12 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+												/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+												/*Parathiro Allagis Kwdikou. Doulevei se Recruiter Kai Candidate.
+												 * O Admin den allazei ton kwdiko tou							*/
+												/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 public class AllagiKwdikou extends LoginWindow {
 
 	protected Shell shell;
@@ -28,10 +34,18 @@ public class AllagiKwdikou extends LoginWindow {
 		}
 	}
 
-	protected void createContents() {
+	/**
+	 * @wbp.parser.entryPoint
+	 */
+	protected void createContents() { 
 		shell = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shell.setSize(382, 172);
 		shell.setText("SWT Application");
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+															/*++++++++++++++++++++++++++++*/
+															/*Dhmiourgia Label kai textbox*/
+															/*++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		
 		PaliosKwdikosTextBox = new Text(shell, SWT.SINGLE | SWT.BORDER | SWT.PASSWORD);
 		PaliosKwdikosTextBox.setText(password);
@@ -59,11 +73,21 @@ public class AllagiKwdikou extends LoginWindow {
 		Label MinimaLathousLabel = new Label(shell, SWT.NONE);
 		MinimaLathousLabel.setAlignment(SWT.CENTER);
 		MinimaLathousLabel.setBounds(10, 91, 167, 32);
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		
-		Button button = new Button(shell, SWT.NONE);
-		button.addMouseListener(new MouseAdapter() {
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+													/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+													/*Listener gia klik sto koumpi allagis kwdikou. 
+													 * Epivevaiwsh oti ta textbox exoun tis times pou tha eprepe. 
+													 * An nai allagi sto katallhlo function                       */
+													/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		
+		Button AllagiKwdikouBtn = new Button(shell, SWT.NONE);
+		AllagiKwdikouBtn.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseUp(MouseEvent e) {
+			public void mouseUp(MouseEvent e) { //TODO elegxei kai apothikevei sto AllagiKwdikou()
+				MinimaLathousLabel.setText("");
 				if (ElegxosPaliouKwdikou(PaliosKwdikosTextBox.getText()) == true) {
 					if (AllagiKwdikou(NeosKwdikosTextBox.getText(), EpanalipsiNeouKwdikouTextBox.getText()) == true) {
 						AllagiKwdikou(NeosKwdikosTextBox.getText(), EpanalipsiNeouKwdikouTextBox.getText());}
@@ -72,8 +96,9 @@ public class AllagiKwdikou extends LoginWindow {
 				else MinimaLathousLabel.setText("Λάθος πληκτρολόγηση παλιού κωδικού");
 			}
 		});
-		button.setBounds(210, 91, 146, 25);
-		button.setText("\u0391\u03BB\u03BB\u03B1\u03B3\u03AE \u03BA\u03C9\u03B4\u03B9\u03BA\u03BF\u03CD");
+		AllagiKwdikouBtn.setBounds(210, 91, 146, 25);
+		AllagiKwdikouBtn.setText("\u0391\u03BB\u03BB\u03B1\u03B3\u03AE \u03BA\u03C9\u03B4\u03B9\u03BA\u03BF\u03CD");
+		/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
 	}
 }
