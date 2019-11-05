@@ -165,7 +165,7 @@ public class LoginWindow extends Main {
 				//elegxos gia candidate, an vrei ta stoixeia thetei epistrofh = 2
 				Candidate = Connection().executeQuery("SELECT username FROM erecruit.candidate WHERE username='"+username+"';");
 				Candidate.next();
-				SQLusername = Candidate.getString(username);	
+				SQLusername = Candidate.getString("username");	
 				Candidate = Connection().executeQuery("SELECT password From erecruit.user WHERE password='"+password+"';");
 				Candidate.next();
 				SQLpassword = Candidate.getString("password");
@@ -173,6 +173,7 @@ public class LoginWindow extends Main {
 				}
 					catch (SQLException e1) {
 						System.out.println("O Xristis " + username + " den einai upopsifios");
+						e1.printStackTrace();
 					}
 
 		return epistrofh;

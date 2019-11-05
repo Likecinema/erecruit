@@ -46,7 +46,6 @@ public class ProvoliKaiEpeksergasiaAitisewn {
 		String IDGiaCombo = null;
 		String[][] ArrayGiaCombo = PinakasThesewnRecruiter();
 			IDGiaCombo = ArrayGiaCombo[i][0];
-			System.out.println(IDGiaCombo);
 			return IDGiaCombo;
 			
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -76,7 +75,6 @@ public class ProvoliKaiEpeksergasiaAitisewn {
 				for (int k = 0; k<SthlesThesewn;k++)
 				{
 					PinakasThesewn[i][k] = TheseisRecruiterRS.getString(k+1);
-					System.out.println(PinakasThesewn[i][k]);
 				}
 				TheseisRecruiterRS.next();
 
@@ -122,7 +120,6 @@ public class ProvoliKaiEpeksergasiaAitisewn {
 			public void widgetSelected(SelectionEvent e) {
 				int ArithmosErgasias = EpilogiAitisisCombo.getSelectionIndex();
 				String[][] PinakasErgasiwn = PinakasThesewnRecruiter();
-				System.out.println(PinakasErgasiwn[1][2]);
 				IDText.setText(PinakasErgasiwn[ArithmosErgasias][0]);
 				SalaryText.setText(PinakasErgasiwn[ArithmosErgasias][1]);
 				EdraText.setText(PinakasErgasiwn[ArithmosErgasias][2]);

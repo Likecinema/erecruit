@@ -4,6 +4,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 
 public class CandidateWindow {
 
@@ -46,6 +48,15 @@ public class CandidateWindow {
 		shell.setText("\u03A0\u03B1\u03C1\u03AC\u03B8\u03C5\u03C1\u03BF \u03A5\u03C0\u03BF\u03C8\u03B7\u03C6\u03AF\u03BF\u03C5");
 		
 		Button ProvoliProfilBtn = new Button(shell, SWT.NONE);
+		ProvoliProfilBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				AllagiStoixeiwnCandidate ParathiroStoixeiwnCandidate = new AllagiStoixeiwnCandidate();
+				ParathiroStoixeiwnCandidate.open();
+				ParathiroStoixeiwnCandidate.createContents();
+				
+			}
+		});
 		ProvoliProfilBtn.setBounds(10, 10, 259, 25);
 		ProvoliProfilBtn.setText("Προβολή/αλλαγή στοιχείων προφίλ");
 		
