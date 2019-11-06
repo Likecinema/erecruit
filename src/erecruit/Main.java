@@ -40,7 +40,7 @@ public class Main {
 			else return false;
 				
 		}
-		public void UpdatePassword() {
+		public static void UpdatePassword() {
 			//TODO update ton kwdiko sthn SQL
 		}
 		

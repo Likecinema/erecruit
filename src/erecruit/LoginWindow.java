@@ -5,6 +5,9 @@ package erecruit;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
+import erecruit.candidate.*;
+import erecruit.admin.*;
+import erecruit.recruiter.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -91,14 +94,12 @@ public class LoginWindow extends Main {
 				else if (SQLCheck() == 2)
 				{
 					RecruiterWindow ParathiroRecruiter = new RecruiterWindow();
-					ParathiroRecruiter.createContents();
 					ParathiroRecruiter.open();
 					AuthenticateLabel.setText("");
 				}
 				else if (SQLCheck() == 3)
 				{
 					 CandidateWindow ParathiroCandidate = new CandidateWindow();
-					 ParathiroCandidate.createContents();
 					 ParathiroCandidate.open();
 					 AuthenticateLabel.setText("");
 					 LoginShell.close();
@@ -138,19 +139,16 @@ public class LoginWindow extends Main {
 		 username = usernameField.getText(); 
 		 password = passwordField.getText();
 		 LoggedInUser = usernameField.getText();
-		 String SQLusername;
-		 String SQLpassword;
+
 		 int epistrofh = 4; //arxikopoihsh int epistrofhs, an apotuxoun ta try/catch kai o elegxos admin epistrefei 4
 		 //elegxos gia admin, gia username=password = admin thetei epistrofh = 1
 		 if (username.equals("admin") && password.equals("admin")) {epistrofh = 1;}
 			try {
 				//elegxos gia recruiter, an vrei ta stoixeia thetei epistrofh = 1
 				Recruiter = Connection().executeQuery("SELECT * FROM recruiter WHERE username='"+username+"';");
-							Recruiter.next();
-							SQLusername = Recruiter.getString("username");	
+							Recruiter.next();	
 							Recruiter = Connection().executeQuery("SELECT password From user inner join recruiter on recruiter.username = user.username WHERE password='"+password+"' AND user.username = '" + username + "'");
 							Recruiter.next();
-							SQLpassword = Recruiter.getString("password");
 							epistrofh = 2;
 							
 							
@@ -166,10 +164,8 @@ public class LoginWindow extends Main {
 				//elegxos gia candidate, an vrei ta stoixeia thetei epistrofh = 2
 				Candidate = Connection().executeQuery("SELECT username FROM candidate WHERE username='"+username+"';");
 				Candidate.next();
-				SQLusername = Candidate.getString("username");	
 				Candidate = Connection().executeQuery("SELECT password From user inner join candidate on user.username = candidate.username WHERE password='"+password+"' AND user.username = '" + username + "'");
 				Candidate.next();
-				SQLpassword = Candidate.getString("password");
 				epistrofh = 3;
 				}
 					catch (SQLException e1) {
