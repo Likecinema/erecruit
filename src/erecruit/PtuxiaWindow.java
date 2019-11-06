@@ -8,15 +8,12 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Button;
 import java.sql.*;
 import org.eclipse.swt.widgets.TableItem;
-import org.eclipse.swt.custom.TableCursor;
 import org.eclipse.swt.widgets.TableColumn;
 
 public class PtuxiaWindow extends AllagiStoixeiwnCandidate {
 
 	protected Shell shell;
 	private Table table;
-	private int seires;
-	private int sthles;
 
 	public void open() {
 		Display display = Display.getDefault();

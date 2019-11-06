@@ -9,7 +9,6 @@ import org.eclipse.swt.widgets.TableItem;
 
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.TableColumn;
@@ -104,10 +103,8 @@ public class TheseisErgasiasEtaireias {
 		{
 			String TheseisErgasias = ("select `id`, `salary`,`edra`, `position`,`recruiter`,`announce_date`,`submission_date` from job inner join recruiter on job.recruiter = recruiter.username inner join etaireia on recruiter.firm = etaireia.AFM where etaireia.AFM in ( select recruiter.firm from recruiter where recruiter.username = '" + LoginWindow.username + "')");
 			ResultSet TheseisErgasiasRS = Main.Connection().executeQuery(TheseisErgasias);
-			System.out.println(TheseisErgasias);
 			ResultSetMetaData MetadataThesewnEtaireias = TheseisErgasiasRS.getMetaData();
 			int ArithmosSthlwn = MetadataThesewnEtaireias.getColumnCount();
-			System.out.println(ArithmosSthlwn);
 		
 
 		while (TheseisErgasiasRS.next() == true)
@@ -121,7 +118,6 @@ public class TheseisErgasiasEtaireias {
 					tblclm.setWidth(150);
 				}
 				item.setText(k-1, TheseisErgasiasRS.getString(k));
-				System.out.println(TheseisErgasiasRS.getString(k));
 			}
 		}
 		}

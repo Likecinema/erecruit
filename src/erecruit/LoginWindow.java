@@ -158,7 +158,7 @@ public class LoginWindow extends Main {
 
 				 
 			} catch (SQLException e) {
-				System.out.println("O xristis " + username + "den einai ipefthinos proslipsewn");
+				System.out.println("O xristis " + username + " den einai ipefthinos proslipsewn");
 			}
 				
 			try {
@@ -173,7 +173,6 @@ public class LoginWindow extends Main {
 				}
 					catch (SQLException e1) {
 						System.out.println("O Xristis " + username + " den einai upopsifios");
-						e1.printStackTrace();
 					}
 
 		return epistrofh;

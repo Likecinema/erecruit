@@ -25,7 +25,6 @@ public class AllagiStoixeiwnLogariasmouRecruiter extends LoginWindow {
 		try {
 			Statement StatementStoixeiwn = Main.Connection();
 			AnagnwshStoixeiwnRS = StatementStoixeiwn.executeQuery("select user.name, surname,reg_date,email,exp_years,etaireia.name from user inner  join recruiter on user.username = recruiter.username inner join etaireia on recruiter.firm = etaireia.AFM where user.username = '" + LoginWindow.username + "'");
-			ResultSetMetaData MetadataAnagnwshs = AnagnwshStoixeiwnRS.getMetaData();
 			AnagnwshStoixeiwnRS.next();
 	}
 		 catch (SQLException e) {
@@ -96,7 +95,6 @@ public class AllagiStoixeiwnLogariasmouRecruiter extends LoginWindow {
 		try {
 			onomaTextBox.setText(AnagnwshStoixeiwnRS.getString(1));
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		

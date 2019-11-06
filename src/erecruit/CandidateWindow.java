@@ -61,10 +61,26 @@ public class CandidateWindow {
 		ProvoliProfilBtn.setText("Προβολή/αλλαγή στοιχείων προφίλ");
 		
 		Button ProvoliAithsewnKaiAkurwshBtn = new Button(shell, SWT.NONE);
+		ProvoliAithsewnKaiAkurwshBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				ProvoliKaiAkurwshAitisisCandidate pkaa = new ProvoliKaiAkurwshAitisisCandidate();
+				pkaa.open();
+				pkaa.createContents();
+			}
+		});
 		ProvoliAithsewnKaiAkurwshBtn.setBounds(10, 41, 259, 25);
 		ProvoliAithsewnKaiAkurwshBtn.setText("\u03A0\u03C1\u03BF\u03B2\u03BF\u03BB\u03AE \u03B1\u03B9\u03C4\u03AE\u03C3\u03B5\u03C9\u03BD \u03BA\u03B1\u03B9 \u0391\u03BA\u03CD\u03C1\u03C9\u03C3\u03B7 \u03B1\u03AF\u03C4\u03B7\u03C3\u03B7\u03C2");
 		
 		Button AitisiSeTheshBtn = new Button(shell, SWT.NONE);
+		AitisiSeTheshBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				AitisiSeThesi Aitisi = new AitisiSeThesi();
+				Aitisi.open();
+				Aitisi.createContents();
+			}
+		});
 		AitisiSeTheshBtn.setBounds(10, 72, 259, 25);
 		AitisiSeTheshBtn.setText("\u0391\u03AF\u03C4\u03B7\u03C3\u03B7 \u03C3\u03B5 \u03B8\u03AD\u03C3\u03B7");
 

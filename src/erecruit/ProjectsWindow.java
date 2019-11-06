@@ -15,7 +15,6 @@ public class ProjectsWindow extends AllagiStoixeiwnCandidate {
 	protected Shell shell;
 	private Text PerigrafiText;
 	private Text URLText;
-	private int sthles = 0;
 	private int seires = 0;
 
 	public void open() {
@@ -79,7 +78,6 @@ public class ProjectsWindow extends AllagiStoixeiwnCandidate {
 				ResultSet ProjectsCandidateRS = Main.Connection().executeQuery(TheseisApoSQL);
 				ResultSetMetaData MetadataRS = ProjectsCandidateRS.getMetaData();
 				int SthlesProject = MetadataRS.getColumnCount();
-				sthles = SthlesProject;
 				ProjectsCandidateRS.last();
 				int SeiresProject = ProjectsCandidateRS.getRow();
 				seires = SeiresProject;
