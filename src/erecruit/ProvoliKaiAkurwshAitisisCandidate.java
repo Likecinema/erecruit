@@ -43,7 +43,7 @@ public class ProvoliKaiAkurwshAitisisCandidate {
 	protected void createContents() {
 		shell = new Shell();
 		shell.setText("\u03A0\u03C1\u03BF\u03B2\u03BF\u03BB\u03AE \u03BA\u03B1\u03B9 \u0391\u03BA\u03CD\u03C1\u03C9\u03C3\u03B7 \u03B1\u03AF\u03C4\u03B7\u03C3\u03B7\u03C2");
-		shell.setSize(348, 314);
+		shell.setSize(348, 350);
 		
 		Combo combo = new Combo(shell, SWT.READ_ONLY);
 		combo.setBounds(10, 31, 312, 23);
@@ -117,16 +117,23 @@ public class ProvoliKaiAkurwshAitisisCandidate {
 				String Hmerominia = formatter.format(Shmera);
 			}
 		});
-		btnNewButton.setBounds(10, 220, 312, 25);
+		btnNewButton.setBounds(10, 255, 312, 25);
 		btnNewButton.setText("\u0391\u03BA\u03CD\u03C1\u03C9\u03C3\u03B7 \u0391\u03AF\u03C4\u03B7\u03C3\u03B7\u03C2");
 		
 		Label KatastasiAkurwshsDynamicLabel = new Label(shell, SWT.NONE);
 		KatastasiAkurwshsDynamicLabel.setAlignment(SWT.CENTER);
-		KatastasiAkurwshsDynamicLabel.setBounds(10, 251, 312, 15);
+		KatastasiAkurwshsDynamicLabel.setBounds(10, 286, 312, 15);
 		
 		Label lblNewLabel_2 = new Label(shell, SWT.NONE);
 		lblNewLabel_2.setBounds(10, 10, 312, 15);
 		lblNewLabel_2.setText("\u0395\u03C0\u03B9\u03BB\u03AD\u03BE\u03C4\u03B5 \u03B1\u03AF\u03C4\u03B7\u03C3\u03B7 \u03BC\u03B5 \u03B2\u03AC\u03C3\u03B7 \u03C4\u03BF ID");
+		
+		Label lblNewLabel_3 = new Label(shell, SWT.NONE);
+		lblNewLabel_3.setBounds(10, 220, 165, 15);
+		lblNewLabel_3.setText("\u039A\u03B1\u03C4\u03AC\u03C3\u03C4\u03B1\u03C3\u03B7 \u03B1\u03AF\u03C4\u03B7\u03C3\u03B7\u03C2");
+		
+		Label lblNewLabel_4 = new Label(shell, SWT.NONE);
+		lblNewLabel_4.setBounds(181, 220, 141, 15);
 		combo.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) { //TODO Katastash Aitisis

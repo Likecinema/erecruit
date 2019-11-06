@@ -1,4 +1,4 @@
-package erecruit;//TODO EPIVEVAIWSH, BUGFIXING
+package erecruit;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;

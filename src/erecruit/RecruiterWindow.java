@@ -1,4 +1,4 @@
-//TODO! doulevoun ola ta set, xreiazomai ola ta get
+//TODO! doulevoun ola ta get, xreiazomai ola ta set
 package erecruit;
 
 import org.eclipse.swt.widgets.Display;

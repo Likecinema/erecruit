@@ -149,7 +149,7 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 	 * Create contents of the window.
 	 * @wbp.parser.entryPoint
 	 */
-	protected void createContents() { //TODO ADD APO antikeim ths SQL, alliws crasharei get Thesh ergasias katharismos button://TODO ALLIWS REMOVE
+	protected void createContents() {
 		shell = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
 		shell.setSize(397, 378);
 		shell.setText("Προσθήκη θέσης εργασίας");

@@ -142,13 +142,13 @@ public class LoginWindow extends Main {
 		 String SQLpassword;
 		 int epistrofh = 4; //arxikopoihsh int epistrofhs, an apotuxoun ta try/catch kai o elegxos admin epistrefei 4
 		 //elegxos gia admin, gia username=password = admin thetei epistrofh = 1
-		 if (username.equals("admin") && password.equals("admin")) {epistrofh = 1; System.out.println(epistrofh);}
+		 if (username.equals("admin") && password.equals("admin")) {epistrofh = 1;}
 			try {
 				//elegxos gia recruiter, an vrei ta stoixeia thetei epistrofh = 1
-				Recruiter = Connection().executeQuery("SELECT * FROM erecruit.recruiter WHERE username='"+username+"';");
+				Recruiter = Connection().executeQuery("SELECT * FROM recruiter WHERE username='"+username+"';");
 							Recruiter.next();
 							SQLusername = Recruiter.getString("username");	
-							Recruiter = Connection().executeQuery("SELECT password From erecruit.user WHERE password='"+password+"';");
+							Recruiter = Connection().executeQuery("SELECT password From user inner join recruiter on recruiter.username = user.username WHERE password='"+password+"' AND user.username = '" + username + "'");
 							Recruiter.next();
 							SQLpassword = Recruiter.getString("password");
 							epistrofh = 2;
@@ -158,20 +158,22 @@ public class LoginWindow extends Main {
 
 				 
 			} catch (SQLException e) {
+				e.printStackTrace();
 				System.out.println("O xristis " + username + " den einai ipefthinos proslipsewn");
 			}
 				
 			try {
 				//elegxos gia candidate, an vrei ta stoixeia thetei epistrofh = 2
-				Candidate = Connection().executeQuery("SELECT username FROM erecruit.candidate WHERE username='"+username+"';");
+				Candidate = Connection().executeQuery("SELECT username FROM candidate WHERE username='"+username+"';");
 				Candidate.next();
 				SQLusername = Candidate.getString("username");	
-				Candidate = Connection().executeQuery("SELECT password From erecruit.user WHERE password='"+password+"';");
+				Candidate = Connection().executeQuery("SELECT password From user inner join candidate on user.username = candidate.username WHERE password='"+password+"' AND user.username = '" + username + "'");
 				Candidate.next();
 				SQLpassword = Candidate.getString("password");
 				epistrofh = 3;
 				}
 					catch (SQLException e1) {
+						e1.printStackTrace();
 						System.out.println("O Xristis " + username + " den einai upopsifios");
 					}
 
