@@ -50,7 +50,7 @@ public class AllagiStoixeiwnLogariasmouRecruiter {
 		Epwnumo = epwnumoTextBox.getText();
 		email = emailTextBox.getText();
 		etaireia = etaireiaTextBox.getText();
-		AllagiKwdikou.UpdatePassword();
+		Main.UpdatePassword(LoginWindow.password);
 		
 		
 	}

@@ -90,8 +90,10 @@ public class AllagiKwdikou extends LoginWindow {
 				MinimaLathousLabel.setText("");
 				if (ElegxosPaliouKwdikou(PaliosKwdikosTextBox.getText()) == true) {
 					if (AllagiKwdikou(NeosKwdikosTextBox.getText(), EpanalipsiNeouKwdikouTextBox.getText()) == true) {
-						AllagiKwdikou(NeosKwdikosTextBox.getText(), EpanalipsiNeouKwdikouTextBox.getText());}
-					else MinimaLathousLabel.setText("Διαφωνία μεταξύ νέου κωδικού κ επανάληψη νέου κωδικού");	
+						AllagiKwdikou(NeosKwdikosTextBox.getText(), EpanalipsiNeouKwdikouTextBox.getText());
+						Main.UpdatePassword(LoginWindow.password);
+						}
+					else MinimaLathousLabel.setText("Διαφωνία μεταξύ νέου κωδικού κ επανάληψη νέου κωδικού");
 					}
 				else MinimaLathousLabel.setText("Λάθος πληκτρολόγηση παλιού κωδικού");
 			}

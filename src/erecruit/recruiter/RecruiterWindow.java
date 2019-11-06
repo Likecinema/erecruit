@@ -4,6 +4,7 @@ package erecruit.recruiter;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 
+import erecruit.Main;
 
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.SWT;
@@ -24,6 +25,7 @@ public class RecruiterWindow{
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
+		Main.ExecuteTriggersRecruiter();
 		shell.open();
 		shell.layout();
 		while (!shell.isDisposed()) {

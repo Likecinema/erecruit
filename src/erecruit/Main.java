@@ -40,8 +40,12 @@ public class Main {
 			else return false;
 				
 		}
-		public static void UpdatePassword() {
-			//TODO update ton kwdiko sthn SQL
+		public static void UpdatePassword(String kwdikos) {
+			try {
+				Main.Connection().executeUpdate("UPDATE user SET password = '" + kwdikos + "' WHERE username = '" + LoginWindow.username +"'" );
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 		
 		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -62,6 +66,34 @@ public class Main {
 
 				
 }
+		public static void ExecuteTriggersRecruiter() {
+			try {
+				//Trigger after insert on job gia logkeeping
+				Main.Connection().execute("create trigger logkeeping1 after insert on job\r\n" + 
+						"for each row\r\n" + 
+						"begin\r\n" + 
+						"declare recruiter_name varchar(35);\r\n" + 
+						"declare current_datetime datetime; " + 
+						"set recruiter_name = (select recruiter from job order by id desc limit 1); " + 
+						"set current_datetime=(NOW()); " + 
+						"insert into logs (username, datetime, success, action, pinakas) values " + 
+						"(recruiter_name, current_datetime, 'yes', 'insert','job'); " + 
+						"end;");
+				//triger after update on job gia logkeeping
+				Main.Connection().execute("create trigger logkeeping2 after update on job " +
+						"for each row " +
+						"declare recruiter_name varchar(35); " +
+						"set recruiter_name = '" +LoginWindow.username+"';" +
+						"set current_daytime=(NOW()); " +
+						"insert into logs (username, datetime, success, action, pinakas) values " +
+						"(recruiter_name,current_datetime,'yes''update','job' " +
+						"end ");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		
 }
 

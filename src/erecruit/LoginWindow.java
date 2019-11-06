@@ -85,7 +85,6 @@ public class LoginWindow extends Main {
 				if (SQLCheck() == 1)
 				{
 					 AdminWindow ParathiroAdmin = new AdminWindow();
-					 ParathiroAdmin.createContents();
 					 ParathiroAdmin.open(); 
 					 AuthenticateLabel.setText("");
 					 
@@ -144,11 +143,9 @@ public class LoginWindow extends Main {
 		 //elegxos gia admin, gia username=password = admin thetei epistrofh = 1
 		 if (username.equals("admin") && password.equals("admin")) {epistrofh = 1;}
 			try {
-				//elegxos gia recruiter, an vrei ta stoixeia thetei epistrofh = 1
-				Recruiter = Connection().executeQuery("SELECT * FROM recruiter WHERE username='"+username+"';");
-							Recruiter.next();	
+				//elegxos gia recruiter, an vrei ta stoixeia thetei epistrofh = 1	
 							Recruiter = Connection().executeQuery("SELECT password From user inner join recruiter on recruiter.username = user.username WHERE password='"+password+"' AND user.username = '" + username + "'");
-							Recruiter.next();
+							if (Recruiter.next() == true)
 							epistrofh = 2;
 							
 							
@@ -162,11 +159,11 @@ public class LoginWindow extends Main {
 				
 			try {
 				//elegxos gia candidate, an vrei ta stoixeia thetei epistrofh = 2
-				Candidate = Connection().executeQuery("SELECT username FROM candidate WHERE username='"+username+"';");
-				Candidate.next();
 				Candidate = Connection().executeQuery("SELECT password From user inner join candidate on user.username = candidate.username WHERE password='"+password+"' AND user.username = '" + username + "'");
-				Candidate.next();
+				if (Candidate.next() == true)
+				{
 				epistrofh = 3;
+				}
 				}
 					catch (SQLException e1) {
 						e1.printStackTrace();
