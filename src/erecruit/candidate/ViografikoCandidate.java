@@ -1,4 +1,4 @@
-//TODO APOTHIKEFSI
+//TODO DONE Viografiko.
 
 package erecruit.candidate;
 
@@ -64,6 +64,19 @@ public class ViografikoCandidate {
 		EditBtn.setText("\u0395\u03C0\u03B5\u03BE\u03B5\u03C1\u03B3\u03B1\u03C3\u03AF\u03B1");
 		
 		Button ApothikefsiBtn = new Button(shell, SWT.NONE);
+		ApothikefsiBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				String bio = text.getText();
+				String UpdateBio = "UPDATE candidate SET bio = '"+bio+"';";
+				try {
+					Main.Connection().execute(UpdateBio);
+					text.setEditable(false);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		ApothikefsiBtn.setBounds(206, 436, 220, 25);
 		ApothikefsiBtn.setText("\u0391\u03C0\u03BF\u03B8\u03AE\u03BA\u03B5\u03C5\u03C3\u03B7");
 

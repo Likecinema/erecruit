@@ -35,7 +35,6 @@ public class Main {
 			if (Kwdikos.equals(Epanalipsi)) {
 				erecruit.LoginWindow.password = Kwdikos;
 				return true;
-				//TODO allagi kwdikou se SQL
 			}
 			else return false;
 				
@@ -71,7 +70,7 @@ public class Main {
 				/*Triggers gia recruiter. To onoma gia update ston pinaka logs erxetai apo LoginWindow.username*/
 				/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-		public static void ExecuteTriggersRecruiter() {
+		public static void ExecuteTriggers() {
 			try {
 				//Trigger after insert on job gia logkeeping
 				Main.Connection().execute("drop trigger if exists logkeeping1");
@@ -93,19 +92,19 @@ public class Main {
 						"declare current_datetime datetime;\r\n" +  
 						"set current_datetime=(NOW());\r\n" + 
 						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
-						"('"+LoginWindow.username+"', current_datetime, 'yes', 'insert','job');\r\n" + 
+						"('"+LoginWindow.username+"', current_datetime, 'yes', 'update','job');\r\n" + 
 						"end;\r\n");
-				//triger before delete on job gia logkeeping, Den efarmozetai sto programma kathws kaneis den mporei na diagrapsei theseis
+				//triger after delete on job gia logkeeping, Den efarmozetai sto programma kathws kaneis den mporei na diagrapsei theseis
 				Main.Connection().execute("drop trigger if exists logkeeping3;");
-				Main.Connection().execute("create trigger logkeeping3 before delete on job\r\n" + 
+				Main.Connection().execute("create trigger logkeeping3 after delete on job\r\n" + 
 						"for each row\r\n" + 
 						"begin \r\n" + 
 						"declare current_datetime datetime;\r\n" +
 						"set current_datetime=(NOW());\r\n" + 
 						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
-						"('"+LoginWindow.username+"', current_datetime, 'yes', 'insert','job');\r\n" + 
+						"('"+LoginWindow.username+"', current_datetime, 'yes', 'delete','job');\r\n" + 
 						"end;\r\n");
-				//triger after update on job gia logkeeping
+				//triger after update on etaireia gia logkeeping
 				Main.Connection().execute("Drop trigger if exists logkeeping4;");
 				Main.Connection().execute("create trigger logkeeping4 after update on etaireia\r\n" + 
 						"for each row\r\n" + 
@@ -113,7 +112,7 @@ public class Main {
 						"declare current_datetime datetime;\r\n" +  
 						"set current_datetime=(NOW());\r\n" + 
 						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
-						"('"+LoginWindow.username+"', current_datetime, 'yes', 'update','etairia');\r\n" + 
+						"('"+LoginWindow.username+"', current_datetime, 'yes', 'update','etaireia');\r\n" + 
 						"end;\r\n");
 				//triger after update on user gia logkeeping
 				Main.Connection().execute("Drop trigger if exists logkeeping5;");
@@ -125,10 +124,111 @@ public class Main {
 						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
 						"('"+LoginWindow.username+"', current_datetime, 'yes', 'update','user');\r\n" + 
 						"end;\r\n");
+				//triger after insert on user gia logkeeping
+				Main.Connection().execute("Drop trigger if exists logkeeping6;");
+				Main.Connection().execute("create trigger logkeeping6 after insert on user\r\n" + 
+						"for each row\r\n" + 
+						"begin\r\n" + 
+						"declare current_datetime datetime;\r\n" +  
+						"set current_datetime=(NOW());\r\n" + 
+						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
+						"('"+LoginWindow.username+"', current_datetime, 'yes', 'insert','user');\r\n" + 
+						"end;\r\n");
+				//trigger after delete on user gia logkeeping. Den efarmozetai sto programma, einai adunath h diagrafi xristi
+				Main.Connection().execute("Drop trigger if exists logkeeping6;");
+				Main.Connection().execute("create trigger logkeeping6 after delete on user\r\n" + 
+						"for each row\r\n" + 
+						"begin\r\n" + 
+						"declare current_datetime datetime;\r\n" +  
+						"set current_datetime=(NOW());\r\n" + 
+						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
+						"('"+LoginWindow.username+"', current_datetime, 'yes', 'delete','user');\r\n" + 
+						"end;\r\n");
+				//trigger after update on candidate
+				Main.Connection().execute("Drop trigger if exists logkeeping7;");
+				Main.Connection().execute("create trigger logkeeping7 after update on candidate\r\n" + 
+						"for each row\r\n" + 
+						"begin\r\n" + 
+						"declare current_datetime datetime;\r\n" +  
+						"set current_datetime=(NOW());\r\n" + 
+						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
+						"('"+LoginWindow.username+"', current_datetime, 'yes', 'update','candidate');\r\n" + 
+						"end;\r\n");
+				//trigger after insert on candidate
+				Main.Connection().execute("Drop trigger if exists logkeeping8;");
+				Main.Connection().execute("create trigger logkeeping8 after insert on candidate\r\n" + 
+						"for each row\r\n" + 
+						"begin\r\n" + 
+						"declare current_datetime datetime;\r\n" +  
+						"set current_datetime=(NOW());\r\n" + 
+						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
+						"('"+LoginWindow.username+"', current_datetime, 'yes', 'insert','candidate');\r\n" +
+						"end;\r\n");
+				//trigger after delete on candidate. Den efarmozetai sto programma, einai adunath h diagrafi ipopsifiou
+				Main.Connection().execute("Drop trigger if exists logkeeping7;");
+				Main.Connection().execute("create trigger logkeeping7 after delete on candidate\r\n" + 
+						"for each row\r\n" + 
+						"begin\r\n" + 
+						"declare current_datetime datetime;\r\n" +  
+						"set current_datetime=(NOW());\r\n" + 
+						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
+						"('"+LoginWindow.username+"', current_datetime, 'yes', 'delete','candidate');\r\n" + 
+						"end;\r\n");
+				//trigger after insert on etaireia
+				Main.Connection().execute("Drop trigger if exists logkeeping8;");
+				Main.Connection().execute("create trigger logkeeping8 after insert on etaireia\r\n" + 
+						"for each row\r\n" + 
+						"begin\r\n" + 
+						"declare current_datetime datetime;\r\n" +  
+						"set current_datetime=(NOW());\r\n" + 
+						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
+						"('"+LoginWindow.username+"', current_datetime, 'yes', 'insert','etaireia');\r\n" + 
+						"end;\r\n");
+				//trigger after delete on etaireia. Den efarmozetai sto programma, einai adunath h diagrafi etaireias
+				Main.Connection().execute("Drop trigger if exists logkeeping9;");
+				Main.Connection().execute("create trigger logkeeping9 after delete on etaireia\r\n" + 
+						"for each row\r\n" + 
+						"begin\r\n" + 
+						"declare current_datetime datetime;\r\n" +  
+						"set current_datetime=(NOW());\r\n" + 
+						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
+						"('"+LoginWindow.username+"', current_datetime, 'yes', 'delete','etaireia');\r\n" + 
+						"end;\r\n");
+				//trigger after update on recruiter
+				Main.Connection().execute("Drop trigger if exists logkeeping10;");
+				Main.Connection().execute("create trigger logkeeping10 after update on recruiter\r\n" + 
+						"for each row\r\n" + 
+						"begin\r\n" + 
+						"declare current_datetime datetime;\r\n" +  
+						"set current_datetime=(NOW());\r\n" + 
+						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
+						"('"+LoginWindow.username+"', current_datetime, 'yes', 'update','recruiter');\r\n" + 
+						"end;\r\n");
+				//trigger after insert on recruiter
+				Main.Connection().execute("Drop trigger if exists logkeeping11;");
+				Main.Connection().execute("create trigger logkeeping11 after insert on recruiter\r\n" + 
+						"for each row\r\n" + 
+						"begin\r\n" + 
+						"declare current_datetime datetime;\r\n" +  
+						"set current_datetime=(NOW());\r\n" + 
+						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
+						"('"+LoginWindow.username+"', current_datetime, 'yes', 'insert','recruiter');\r\n" + 
+						"end;\r\n");
+				//trigger after delete on recruiter. Den efarmozetai, einai adunath h diagrafh recruiter
+				Main.Connection().execute("Drop trigger if exists logkeeping12;");
+				Main.Connection().execute("create trigger logkeeping12 after delete on recruiter\r\n" + 
+						"for each row\r\n" + 
+						"begin\r\n" + 
+						"declare current_datetime datetime;\r\n" +  
+						"set current_datetime=(NOW());\r\n" + 
+						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
+						"("+LoginWindow.username+", current_datetime, 'yes', 'delete','recruiter');\r\n" + 
+						"end;\r\n");
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
 		}
+		
 		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		
 		

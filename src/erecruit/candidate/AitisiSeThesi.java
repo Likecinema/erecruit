@@ -1,4 +1,4 @@
-package erecruit.candidate;
+package erecruit.candidate; //DONE
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -9,6 +9,8 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import erecruit.LoginWindow;
 import erecruit.Main;
 
 import org.eclipse.swt.SWT;
@@ -16,6 +18,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 
 public class AitisiSeThesi {
 
@@ -96,6 +100,21 @@ protected void createContents() {
 	StartDateDynamicLabel.setBounds(169, 60, 115, 15);
 	
 	Button btnNewButton = new Button(shell, SWT.NONE);
+	btnNewButton.addMouseListener(new MouseAdapter() {
+		@Override
+		public void mouseUp(MouseEvent e) {
+			int ArithmosIndex = combo.getSelectionIndex();
+			String IDThesis = combo.getItem(ArithmosIndex);
+			String InsertOnApplies = "insert into applies (cand_usrname, job_id) values ('"+LoginWindow.username+"',"+IDThesis+");";
+			try {
+				Main.Connection().execute(InsertOnApplies);
+			}
+			catch (SQLException e1)
+			{
+				e1.printStackTrace();
+			}
+		}
+	});
 	btnNewButton.setBounds(10, 161, 271, 25);
 	btnNewButton.setText("\u0391\u03AF\u03C4\u03B7\u03C3\u03B7 \u03B3\u03B9\u03B1 \u03C4\u03B7 \u03B8\u03AD\u03C3\u03B7");
 	combo.addSelectionListener(new SelectionAdapter() {
@@ -146,4 +165,5 @@ protected void createContents() {
 				IDGiaCombo = ArrayGiaCombo[i][0];
 				return IDGiaCombo;
 		}
+		
 	}

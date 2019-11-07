@@ -1,4 +1,4 @@
-package erecruit; //TODO AllagiKwdikou DONE.
+package erecruit; //TODO DONE AllagiKwdikou.
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;

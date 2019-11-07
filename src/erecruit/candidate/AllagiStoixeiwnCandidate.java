@@ -181,14 +181,10 @@ public class AllagiStoixeiwnCandidate extends CandidateWindow{
 		EditBtn.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				UsernameTextBox.setEditable(true);
-				UsernameTextBox.setEnabled(true);
 				NameTextBox.setEditable(true);
 				NameTextBox.setEnabled(true);
 				SurnameTextBox.setEditable(true);
 				SurnameTextBox.setEnabled(true);
-				Reg_dateTextBox.setEditable(true);
-				Reg_dateTextBox.setEnabled(true);
 				emailTextBox.setEditable(true);
 				emailTextBox.setEnabled(true);
 				SystatikesTextBox.setEditable(true);
@@ -213,6 +209,25 @@ public class AllagiStoixeiwnCandidate extends CandidateWindow{
 		AllagiKwdikouBtn.setText("\u0391\u03BB\u03BB\u03B1\u03B3\u03AE \u03BA\u03C9\u03B4\u03B9\u03BA\u03BF\u03CD");
 		
 		Button ApothikefsiBtn = new Button(shell, SWT.NONE);
+		ApothikefsiBtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				String OnomaCandidate = NameTextBox.getText();	
+				String EpithetoCandidate = SurnameTextBox.getText();
+				String emailCandidate = emailTextBox.getText();
+				String SystatikesCandidate = SystatikesTextBox.getText();
+				String PtuxiaCandidate = CertFileTextBox.getText();
+				System.out.println(OnomaCandidate);
+				String UpdateUserTable = "UPDATE user SET name = '"+OnomaCandidate+"', surname = '"+EpithetoCandidate+"',email = '"+emailCandidate+"' WHERE user.username = '"+LoginWindow.username+"';";
+				String UpdateCandidateTable = "UPDATE candidate SET sistatikes = '"+SystatikesCandidate+"', certificates = '"+PtuxiaCandidate+"' WHERE username = '"+LoginWindow.username+"';";
+				try {
+					Main.Connection().execute(UpdateUserTable);
+					Main.Connection().execute(UpdateCandidateTable);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		ApothikefsiBtn.setBounds(240, 382, 100, 25);
 		ApothikefsiBtn.setText("\u0391\u03C0\u03BF\u03B8\u03AE\u03BA\u03B5\u03C5\u03C3\u03B7");
 		

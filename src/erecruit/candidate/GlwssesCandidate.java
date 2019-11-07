@@ -1,4 +1,4 @@
-//TODO APOTHIKEFSI
+//TODO DONE Glwsses.
 
 
 package erecruit.candidate;
@@ -15,6 +15,8 @@ import org.eclipse.swt.widgets.Button;
 
 import erecruit.Main;
 import erecruit.LoginWindow;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 
 public class GlwssesCandidate extends AllagiStoixeiwnCandidate {
 
@@ -52,10 +54,29 @@ public class GlwssesCandidate extends AllagiStoixeiwnCandidate {
 		text.setText(EisagwghGlwsswn());
 		
 		Button button = new Button(shell, SWT.NONE);
+		button.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				text.setEditable(true);
+			}
+		});
 		button.setBounds(10, 69, 132, 25);
 		button.setText("\u0395\u03C0\u03B5\u03BE\u03B5\u03C1\u03B3\u03B1\u03C3\u03AF\u03B1");
 		
 		Button btnNewButton = new Button(shell, SWT.NONE);
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				String langs = text.getText();
+				String UpdateQuery = "UPDATE languages SET lang = '"+langs+"' where candid = '"+LoginWindow.username+"';";
+				try {
+					Main.Connection().execute(UpdateQuery);
+					text.setEditable(false);
+				} catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
 		btnNewButton.setBounds(162, 69, 132, 25);
 		btnNewButton.setText("\u0391\u03C0\u03BF\u03B8\u03AE\u03BA\u03B5\u03C5\u03C3\u03B7");
 

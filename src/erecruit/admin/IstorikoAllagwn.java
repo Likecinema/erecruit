@@ -3,9 +3,21 @@ package erecruit.admin;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
+
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
+
+import erecruit.LoginWindow;
+import erecruit.Main;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.widgets.Button;
 
 public class IstorikoAllagwn {
 
@@ -78,8 +90,13 @@ public class IstorikoAllagwn {
 		label_4.setAlignment(SWT.CENTER);
 		label_4.setBounds(782, 10, 150, 15);
 		
-		Combo combo = new Combo(shell, SWT.NONE);
-		combo.setBounds(10, 414, 942, 23);
+		Combo combo = new Combo(shell, SWT.READ_ONLY);
+		combo.setBounds(10, 414, 774, 23);
+		combo.add("user");
+		combo.add("recruiter");
+		combo.add("etaireia");
+		combo.add("candidate");
+		combo.add("job");
 		
 		Label lblNewLabel = new Label(shell, SWT.NONE);
 		lblNewLabel.setAlignment(SWT.CENTER);
@@ -90,6 +107,46 @@ public class IstorikoAllagwn {
 		table.setBounds(10, 31, 942, 356);
 		table.setHeaderVisible(true);
 		table.setLinesVisible(true);
+		
+		Button epilogibtn = new Button(shell, SWT.NONE);
+		epilogibtn.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				String pinakas = combo.getText();
+				table.removeAll();
+				IstorikoMetavolwnAnaPinaka(pinakas);
+			}
+		});
+		epilogibtn.setBounds(802, 412, 150, 25);
+		epilogibtn.setText("\u0395\u03C0\u03B9\u03BB\u03BF\u03B3\u03AE");
 
 	}
+	private void IstorikoMetavolwnAnaPinaka(String Pinakas){
+		try
+		{
+			String PinakasMetavolwn = ("select * from logs where pinakas = '"+Pinakas+"';");
+			ResultSet PinakasMetavolwnRS = Main.Connection().executeQuery(PinakasMetavolwn);
+			ResultSetMetaData MetadataPinakaMetavolwn = PinakasMetavolwnRS.getMetaData();
+			int ArithmosSthlwn = MetadataPinakaMetavolwn.getColumnCount();
+		
+
+		while (PinakasMetavolwnRS.next() == true)
+		{
+			
+			TableItem item = new TableItem(table, SWT.NONE);
+
+			for (int k = 1; k < ArithmosSthlwn + 1; k++) {
+				if (table.getColumnCount() < ArithmosSthlwn) {
+					TableColumn tblclm = new TableColumn(table, SWT.NONE);
+					tblclm.setWidth(150);
+				}
+				item.setText(k-1, PinakasMetavolwnRS.getString(k));
+			}
+		}
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		}
 }
+	

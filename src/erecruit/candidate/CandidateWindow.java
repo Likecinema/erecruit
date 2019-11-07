@@ -2,6 +2,9 @@ package erecruit.candidate;
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
+
+import erecruit.Main;
+
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
@@ -30,6 +33,7 @@ public class CandidateWindow {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
+		Main.ExecuteTriggers();
 		shell.open();
 		shell.layout();
 		while (!shell.isDisposed()) {

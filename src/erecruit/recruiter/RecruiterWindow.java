@@ -25,7 +25,7 @@ public class RecruiterWindow{
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
-		Main.ExecuteTriggersRecruiter();
+		Main.ExecuteTriggers();
 		shell.open();
 		shell.layout();
 		while (!shell.isDisposed()) {

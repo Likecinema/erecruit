@@ -1,4 +1,4 @@
-package erecruit.recruiter; //TODO AllagiStoixeiwnEtaireias DONE.
+package erecruit.recruiter; //TODO DONE AllagiStoixeiwnEtaireias.
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;

@@ -1,4 +1,4 @@
-package erecruit.recruiter; //TODO AllagiStoixeiwnEtaireias DONE. todo katharismosbutton Alliws Remove
+package erecruit.recruiter; //TODO DONE ProsthikiThesisErgasias. todo katharismosbutton Alliws Remove
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -101,8 +101,8 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 		Date ImerominiaLiksisSQL = ImerominiaLiksis;
 		String EdraSQL = EdraText.getText();
 		String UpdateJob = "insert into job (start_date, salary, position, edra, recruiter, announce_date, submission_date) values ('"+ImerominiaEnarksisSQL+"','"+MisthosNeasThesis+"', '"+TitlosNeasThesis+"', '"+EdraSQL+"', '"+LoginWindow.username+"', '"+ImerominiaAnakoinwshsSQL+"', '"+ImerominiaLiksisSQL+"');";
-		String IDNEeasTheshs= SQLgetArithmosThesisErgasias();
-		String UpdateRequires = "insert into requires (job_id, antikeim_title) values ('"+IDNEeasTheshs+"',"+AntikeimSQL+"');";
+		String IDNeasTheshs= SQLgetArithmosThesisErgasias();
+		String UpdateRequires = "insert into requires (job_id, antikeim_title) values ("+IDNeasTheshs+",'"+AntikeimSQL+"');";
 		try {
 			Main.Connection().execute(UpdateJob);
 			Main.Connection().execute(UpdateRequires);
