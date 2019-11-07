@@ -1,4 +1,4 @@
-package erecruit.recruiter;
+package erecruit.recruiter; //TODO AllagiStoixeiwnLogariasmouRecruiter DONE.
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -45,13 +45,19 @@ public class AllagiStoixeiwnLogariasmouRecruiter {
 	private Text etaireiaTextBox;
 	private Text ethProupiresiasTextBox;
 	
-	public void AllagiStoixeiwnLogariasmouSQL() { //TODO UPDATE TH VASH
+	public void AllagiStoixeiwnLogariasmouSQL() { //TODO dinei 2 logs
 		Onoma = onomaTextBox.getText();
 		Epwnumo = epwnumoTextBox.getText();
 		email = emailTextBox.getText();
 		etaireia = etaireiaTextBox.getText();
 		Main.UpdatePassword(LoginWindow.password);
-		
+		String UpdateQuery = "UPDATE user SET name = '"+Onoma+"', surname = '"+Epwnumo+"', email= '"+email+"' WHERE username='"+LoginWindow.username+"';";
+		try {
+			Main.Connection().execute(UpdateQuery);
+			System.out.println("hey");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}					
 		
 	}
 
@@ -210,6 +216,12 @@ public class AllagiStoixeiwnLogariasmouRecruiter {
 		ButtonAllaghKwdikou.setBounds(115, 228, 101, 25);
 		
 		Button ButtonEpivevaiwsh = new Button(shell, SWT.NONE);
+		ButtonEpivevaiwsh.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				AllagiStoixeiwnLogariasmouSQL();
+			}
+		});
 		ButtonEpivevaiwsh.setText("Επιβεβαίωση");
 		ButtonEpivevaiwsh.setBounds(222, 228, 91, 25);
 

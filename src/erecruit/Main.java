@@ -66,33 +66,70 @@ public class Main {
 
 				
 }
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+				/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++/*
+				/*Triggers gia recruiter. To onoma gia update ston pinaka logs erxetai apo LoginWindow.username*/
+				/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		public static void ExecuteTriggersRecruiter() {
 			try {
 				//Trigger after insert on job gia logkeeping
+				Main.Connection().execute("drop trigger if exists logkeeping1");
 				Main.Connection().execute("create trigger logkeeping1 after insert on job\r\n" + 
 						"for each row\r\n" + 
 						"begin\r\n" + 
 						"declare recruiter_name varchar(35);\r\n" + 
-						"declare current_datetime datetime; " + 
-						"set recruiter_name = (select recruiter from job order by id desc limit 1); " + 
-						"set current_datetime=(NOW()); " + 
-						"insert into logs (username, datetime, success, action, pinakas) values " + 
-						"(recruiter_name, current_datetime, 'yes', 'insert','job'); " + 
-						"end;");
+						"declare current_datetime datetime;\r\n" + 
+						"set recruiter_name = (select recruiter from job order by id desc limit 1);\r\n" + 
+						"set current_datetime=(NOW());\r\n" + 
+						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
+						"(recruiter_name, current_datetime, 'yes', 'insert','job');\r\n" + 
+						"end;\r\n");
 				//triger after update on job gia logkeeping
-				Main.Connection().execute("create trigger logkeeping2 after update on job " +
-						"for each row " +
-						"declare recruiter_name varchar(35); " +
-						"set recruiter_name = '" +LoginWindow.username+"';" +
-						"set current_daytime=(NOW()); " +
-						"insert into logs (username, datetime, success, action, pinakas) values " +
-						"(recruiter_name,current_datetime,'yes''update','job' " +
-						"end ");
+				Main.Connection().execute("Drop trigger if exists logkeeping2;");
+				Main.Connection().execute("create trigger logkeeping2 after update on job\r\n" + 
+						"for each row\r\n" + 
+						"begin\r\n" + 
+						"declare current_datetime datetime;\r\n" +  
+						"set current_datetime=(NOW());\r\n" + 
+						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
+						"('"+LoginWindow.username+"', current_datetime, 'yes', 'insert','job');\r\n" + 
+						"end;\r\n");
+				//triger before delete on job gia logkeeping, Den efarmozetai sto programma kathws kaneis den mporei na diagrapsei theseis
+				Main.Connection().execute("drop trigger if exists logkeeping3;");
+				Main.Connection().execute("create trigger logkeeping3 before delete on job\r\n" + 
+						"for each row\r\n" + 
+						"begin \r\n" + 
+						"declare current_datetime datetime;\r\n" +
+						"set current_datetime=(NOW());\r\n" + 
+						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
+						"('"+LoginWindow.username+"', current_datetime, 'yes', 'insert','job');\r\n" + 
+						"end;\r\n");
+				//triger after update on job gia logkeeping
+				Main.Connection().execute("Drop trigger if exists logkeeping4;");
+				Main.Connection().execute("create trigger logkeeping4 after update on etaireia\r\n" + 
+						"for each row\r\n" + 
+						"begin\r\n" + 
+						"declare current_datetime datetime;\r\n" +  
+						"set current_datetime=(NOW());\r\n" + 
+						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
+						"('"+LoginWindow.username+"', current_datetime, 'yes', 'update','etairia');\r\n" + 
+						"end;\r\n");
+				//triger after update on user gia logkeeping
+				Main.Connection().execute("Drop trigger if exists logkeeping5;");
+				Main.Connection().execute("create trigger logkeeping5 after update on user\r\n" + 
+						"for each row\r\n" + 
+						"begin\r\n" + 
+						"declare current_datetime datetime;\r\n" +  
+						"set current_datetime=(NOW());\r\n" + 
+						"insert into logs (username, datetime, success, action, pinakas) values\r\n" + 
+						"('"+LoginWindow.username+"', current_datetime, 'yes', 'update','user');\r\n" + 
+						"end;\r\n");
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 		
 		
 }

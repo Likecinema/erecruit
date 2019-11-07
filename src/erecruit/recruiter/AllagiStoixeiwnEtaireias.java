@@ -1,5 +1,4 @@
-package erecruit.recruiter;
-//Done. Leipoun mono get/set apo SQL
+package erecruit.recruiter; //TODO AllagiStoixeiwnEtaireias DONE.
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -30,14 +29,21 @@ public class AllagiStoixeiwnEtaireias {
 	private Text AFMText;
 	private Button AllagiStoixeiwnButton;
 	private Button EfarmogiAllagwnButton;
+	private String OnomaEtaireias;
 
-	private void SQLAllagiStoixeiwn() 		//TODO ola ta string sto erecruit.etairia//
+	private void SQLAllagiStoixeiwn()
 	{
 		String thlefwno = telText.getText();
 		String odos = streetText.getText();
-		String Arithmos = numText.getText();//TODO DE GOUSTAREI ARITHMOUS!
+		String Arithmos = numText.getText();
 		String xwra = countryText.getText();
 		String polh = cityText.getText();
+		String UpdateQuery = "UPDATE etaireia set tel = '"+thlefwno+"',street = '"+odos+"', num ='"+Arithmos+"', country='"+xwra+"', city = '"+polh+"' Where name = '"+OnomaEtaireias+"';";
+		try {
+			Main.Connection().execute(UpdateQuery);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 
@@ -155,6 +161,7 @@ public class AllagiStoixeiwnEtaireias {
 		AFMText.setText(StoixeiaEtaireiasRS.getString(1));
 		DOYText.setText(StoixeiaEtaireiasRS.getString(2));
 		nameText.setText(StoixeiaEtaireiasRS.getString(3));
+		OnomaEtaireias = (StoixeiaEtaireiasRS.getString(3));
 		telText.setText(StoixeiaEtaireiasRS.getString(4));
 		streetText.setText(StoixeiaEtaireiasRS.getString(5));
 		numText.setText(StoixeiaEtaireiasRS.getString(6));

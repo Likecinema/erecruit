@@ -1,10 +1,12 @@
-package erecruit.recruiter;
+package erecruit.recruiter; //TODO AllagiStoixeiwnEtaireias DONE. todo katharismosbutton Alliws Remove
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Label;
 
 import java.sql.*;
+
+import erecruit.LoginWindow;
 import erecruit.Main;
 
 
@@ -19,7 +21,6 @@ import org.eclipse.swt.events.MouseEvent;
 public class ProsthikiThesisErgasias extends RecruiterWindow {
 
 	protected Shell shell;
-	private Text perigrafiText;
 	private Text misthosText;
 	private Text titlosThesisText;
 	private Text KwdikosText;
@@ -28,6 +29,7 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 	public Date ImerominiaAnakoinwshs;
 	public Date ImerominiaLiksis;
 	private int CounterAntikeimenwn = 1;
+	private Text EdraText;
 
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 			/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -90,14 +92,23 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 			/*Prosorini apothikefsi metavlhtwn prin ginei apothikefsi sth vash*/
 			/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
-	public void ApothikefsiStoixeiwnNeasThesis() { 		//TODO APOTHIKEFSI ola ta strings sth vash
+	public void ApothikefsiStoixeiwnNeasThesis() { 
 		String TitlosNeasThesis = titlosThesisText.getText();
 		String MisthosNeasThesis = misthosText.getText();
 		String AntikeimSQL = Antikeim;
 		Date ImerominiaEnarksisSQL = ImerominiaEnarksis;
 		Date ImerominiaAnakoinwshsSQL = ImerominiaAnakoinwshs;
 		Date ImerominiaLiksisSQL = ImerominiaLiksis;
-		String PerigrafiThesis = perigrafiText.getText();
+		String EdraSQL = EdraText.getText();
+		String UpdateJob = "insert into job (start_date, salary, position, edra, recruiter, announce_date, submission_date) values ('"+ImerominiaEnarksisSQL+"','"+MisthosNeasThesis+"', '"+TitlosNeasThesis+"', '"+EdraSQL+"', '"+LoginWindow.username+"', '"+ImerominiaAnakoinwshsSQL+"', '"+ImerominiaLiksisSQL+"');";
+		String IDNEeasTheshs= SQLgetArithmosThesisErgasias();
+		String UpdateRequires = "insert into requires (job_id, antikeim_title) values ('"+IDNEeasTheshs+"',"+AntikeimSQL+"');";
+		try {
+			Main.Connection().execute(UpdateJob);
+			Main.Connection().execute(UpdateRequires);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 	/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -152,7 +163,7 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 	 */
 	protected void createContents() {
 		shell = new Shell(SWT.SHELL_TRIM & (~SWT.RESIZE) & (~SWT.MAX));
-		shell.setSize(397, 378);
+		shell.setSize(397, 324);
 		shell.setText("Προσθήκη θέσης εργασίας");
 		
 		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
@@ -174,52 +185,52 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 		misthosThesisErgasiasLabel.setText("\u039C\u03B9\u03C3\u03B8\u03CC\u03C2");
 		
 		Label antikeimThesisErgasiasLabel = new Label(shell, SWT.NONE);
-		antikeimThesisErgasiasLabel.setBounds(10, 105, 171, 15);
+		antikeimThesisErgasiasLabel.setBounds(10, 129, 171, 15);
 		antikeimThesisErgasiasLabel.setText("\u0391\u03BD\u03C4\u03B9\u03BA\u03B5\u03AF\u03BC\u03B5\u03BD\u03BF \u03B8\u03AD\u03C3\u03B7\u03C2 \u03B5\u03C1\u03B3\u03B1\u03C3\u03AF\u03B1\u03C2");
 		
 		Label imerominiaEnarksisErgasiasLabel = new Label(shell, SWT.NONE);
-		imerominiaEnarksisErgasiasLabel.setBounds(10, 148, 181, 15);
+		imerominiaEnarksisErgasiasLabel.setBounds(10, 172, 181, 15);
 		imerominiaEnarksisErgasiasLabel.setText("\u0397\u03BC\u03B5\u03C1\u03BF\u03BC\u03B7\u03BD\u03AF\u03B1 \u03AD\u03BD\u03B1\u03C1\u03BE\u03B7\u03C2 \u03B5\u03C1\u03B3\u03B1\u03C3\u03AF\u03B1\u03C2");
 		
 		Label imerominiaAnakoinwshsLabel = new Label(shell, SWT.NONE);
-		imerominiaAnakoinwshsLabel.setBounds(10, 178, 181, 15);
+		imerominiaAnakoinwshsLabel.setBounds(10, 202, 181, 15);
 		imerominiaAnakoinwshsLabel.setText("\u0397\u03BC\u03B5\u03C1\u03BF\u03BC\u03B7\u03BD\u03AF\u03B1 \u03B1\u03BD\u03B1\u03BA\u03BF\u03AF\u03BD\u03C9\u03C3\u03B7\u03C2");
 		
 		Label imerominiaLiksisLabel = new Label(shell, SWT.NONE);
-		imerominiaLiksisLabel.setBounds(10, 210, 232, 15);
+		imerominiaLiksisLabel.setBounds(10, 234, 232, 15);
 		imerominiaLiksisLabel.setText("\u0397\u03BC\u03B5\u03C1\u03BF\u03BC\u03B7\u03BD\u03AF\u03B1 \u03BB\u03AE\u03BE\u03B7\u03C2 \u03C5\u03C0\u03BF\u03B2\u03BF\u03BB\u03AE\u03C2 \u03B1\u03B9\u03C4\u03AE\u03C3\u03B5\u03C9\u03BD");
-		
-		Label PerigrafiThesisErgasiasLabel = new Label(shell, SWT.NONE);
-		PerigrafiThesisErgasiasLabel.setBounds(10, 234, 171, 15);
-		PerigrafiThesisErgasiasLabel.setText("\u03A0\u03B5\u03C1\u03B9\u03B3\u03C1\u03B1\u03C6\u03AE \u03B8\u03AD\u03C3\u03B7\u03C2 \u03B5\u03C1\u03B3\u03B1\u03C3\u03AF\u03B1\u03C2");
-		
-		perigrafiText = new Text(shell, SWT.MULTI | SWT.BORDER | SWT.V_SCROLL | SWT.WRAP);
-		perigrafiText.setBounds(186, 231, 186, 68);
-		
-		DateTime liksiDateBox = new DateTime(shell, SWT.BORDER);
-		liksiDateBox.setBounds(266, 201, 105, 24);
-		
-		DateTime anakoinwshDateBox = new DateTime(shell, SWT.BORDER);
-		anakoinwshDateBox.setBounds(266, 169, 106, 24);
-		
-		DateTime enarksiDateBox = new DateTime(shell, SWT.BORDER);
-		enarksiDateBox.setBounds(266, 139, 107, 24);
-		
-		misthosText = new Text(shell, SWT.BORDER);
-		misthosText.setBounds(187, 75, 186, 21);
-		
-		titlosThesisText = new Text(shell, SWT.BORDER);
-		titlosThesisText.setBounds(187, 44, 186, 21);
 		
 		KwdikosText = new Text(shell, SWT.BORDER);
 		KwdikosText.setText(SQLgetArithmosThesisErgasias()); //Eisagwgh ID thesis ergasias
 		KwdikosText.setEditable(false);
 		KwdikosText.setBounds(187, 17, 186, 21);
 		
+		titlosThesisText = new Text(shell, SWT.BORDER);
+		titlosThesisText.setBounds(187, 44, 186, 21);
+		
+		misthosText = new Text(shell, SWT.BORDER);
+		misthosText.setBounds(187, 75, 186, 21);
+		
+		EdraText = new Text(shell, SWT.BORDER);
+		EdraText.setBounds(186, 102, 186, 21);
+		
 		Combo AntikeimenaList = new Combo(shell, SWT.READ_ONLY);
-		AntikeimenaList.setBounds(187, 105, 186, 23);
+		AntikeimenaList.setBounds(187, 129, 186, 23);
 		AntikeimenaList.setItems(EisagwgiAntikeimApoVasi()); //Eisagwgh Antikeimenwn sto combo
 		AntikeimenaList.select(0);
+		
+		DateTime enarksiDateBox = new DateTime(shell, SWT.BORDER);
+		enarksiDateBox.setBounds(266, 163, 107, 24);
+		
+		DateTime anakoinwshDateBox = new DateTime(shell, SWT.BORDER);
+		anakoinwshDateBox.setBounds(268, 193, 106, 24);
+		
+		DateTime liksiDateBox = new DateTime(shell, SWT.BORDER);
+		liksiDateBox.setBounds(268, 225, 105, 24);
+		
+		Label edraLabel = new Label(shell, SWT.NONE);
+		edraLabel.setBounds(10, 108, 55, 15);
+		edraLabel.setText("\u0388\u03B4\u03C1\u03B1");
 
 		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 
@@ -243,12 +254,13 @@ public class ProsthikiThesisErgasias extends RecruiterWindow {
 				
 			}
 		});
-		EfarmogiButton.setBounds(10, 305, 171, 25);
+		EfarmogiButton.setBounds(10, 255, 171, 25);
 		EfarmogiButton.setText("\u0395\u03C6\u03B1\u03C1\u03BC\u03BF\u03B3\u03AE");
 		
 		Button KatharismosButton = new Button(shell, SWT.NONE); 
-		KatharismosButton.setBounds(186, 305, 186, 25);
+		KatharismosButton.setBounds(187, 255, 186, 25);
 		KatharismosButton.setText("\u039A\u03B1\u03B8\u03B1\u03C1\u03B9\u03C3\u03BC\u03CC\u03C2");
+		
 		
 		/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
 

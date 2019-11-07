@@ -1,9 +1,4 @@
-/*TODO
- * Den exw kanei: 
- * Provolh thesewn ergasias me vash to ti epilexthike sto combobox
- * kanena update sthn sql
- * 
- */
+//TODO TELEFTAIO. Thelei doulitsa
 
 
 package erecruit.recruiter;

@@ -1,4 +1,4 @@
-package erecruit;
+package erecruit; //TODO AllagiKwdikou DONE.
 
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -86,7 +86,7 @@ public class AllagiKwdikou extends LoginWindow {
 		Button AllagiKwdikouBtn = new Button(shell, SWT.NONE);
 		AllagiKwdikouBtn.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseUp(MouseEvent e) { //TODO elegxei kai apothikevei sto AllagiKwdikou()
+			public void mouseUp(MouseEvent e) {
 				MinimaLathousLabel.setText("");
 				if (ElegxosPaliouKwdikou(PaliosKwdikosTextBox.getText()) == true) {
 					if (AllagiKwdikou(NeosKwdikosTextBox.getText(), EpanalipsiNeouKwdikouTextBox.getText()) == true) {
